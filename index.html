@@ -1,93 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conuco Consulting</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f1115;
-      color: white;
-    }
-    header {
-      padding: 120px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #111827, #1f2937);
-    }
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    p.lead {
-      font-size: 20px;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      color: #cbd5e1;
-    }
-    .cta {
-      padding: 14px 28px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .card {
-      background: #1f2937;
-      padding: 30px;
-      border-radius: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: #111827;
-      color: #94a3b8;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conuco Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Inter', sans-serif; background:#0d0f12; color:#fff; line-height:1.6;}
+
+section {padding:120px 8%;}
+
+.hero {
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)), url('hero.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content {max-width:900px;}
+.hero h1 {font-size:64px; font-weight:600; margin-bottom:24px;}
+.hero p {font-size:20px; color:#cfcfcf; margin-bottom:40px;}
+
+.button {
+  display:inline-block;
+  padding:16px 40px;
+  border:1px solid #fff;
+  text-decoration:none;
+  color:#fff;
+  transition:all .3s ease;
+}
+.button:hover {background:#fff; color:#000;}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+
+.card {
+  position:relative;
+  height:500px;
+  overflow:hidden;
+}
+
+.card img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.75);
+  transition:transform .6s ease;
+}
+
+.card:hover img {transform:scale(1.05);}
+
+.card-content {
+  position:absolute;
+  bottom:40px;
+  left:40px;
+  right:40px;
+}
+
+.card h2 {font-size:28px; margin-bottom:12px;}
+.card p {color:#ddd;}
+
+.statement {
+  max-width:900px;
+  font-size:32px;
+  font-weight:300;
+  color:#ddd;
+}
+
+footer {
+  padding:60px 8%;
+  border-top:1px solid #222;
+  color:#aaa;
+  font-size:14px;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>Structure for Growth</h1>
-  <p class="lead">
-    Conuco Consulting supports growing companies that need stronger internal structure as they scale. We align people, processes, and performance so your business grows with clarity and stability.
-  </p>
-  <a href="mailto:hello@conuco.consulting" class="cta">Let's Talk</a>
-</header>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Structure for Growth</h1>
+    <p>We help organizations scale through operational clarity, people alignment, and systems that support performance.</p>
+    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" class="button">Let's Talk</a>
+  </div>
+</section>
 
 <section>
-  <h2>What We Do</h2>
-  <div class="services">
+  <div class="grid">
     <div class="card">
-      <h3>Operational Structure</h3>
-      <p>Design internal systems that scale with your business, not against it.</p>
+      <img src="operations.jpg" alt="Operations">
+      <div class="card-content">
+        <h2>Operational Structure</h2>
+        <p>Designing systems that scale with your business, not against it.</p>
+      </div>
     </div>
     <div class="card">
-      <h3>People & HR Strategy</h3>
-      <p>Align talent, roles, and accountability to drive performance.</p>
-    </div>
-    <div class="card">
-      <h3>Process Optimization</h3>
-      <p>Remove friction, improve execution, and create operational clarity.</p>
+      <img src="structure.jpg" alt="Structure">
+      <div class="card-content">
+        <h2>People & HR Strategy</h2>
+        <p>Aligning talent, roles, and accountability to drive performance.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<section>
+  <div class="statement">
+    Growth fails when structure cannot hold it.  
+    We build the operational backbone that allows companies to expand without losing clarity, control, or culture.
+  </div>
+</section>
+
 <footer>
-  © 2026 Conuco Consulting · All rights reserved
+© 2026 Conuco Consulting — Madrid / Montreal
 </footer>
 
 </body>
