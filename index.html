@@ -1,125 +1,741 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Conuco Consulting</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conuco Consulting</title>
+  <meta name="description" content="Conuco Consulting helps growing companies build the people and operational structure required to scale with clarity and stability." />
 
-<style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:'Inter', sans-serif; background:#0d0f12; color:#fff; line-height:1.6;}
+  <!-- Archivo (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-section {padding:120px 8%;}
+  <style>
+    :root{
+      /* Balanced (in-between) theme */
+      --bg: #f5f3ef;          /* warm light */
+      --panel: #ffffff;       /* white panels */
+      --ink: #0b1220;         /* deep ink (not black) */
+      --muted: #475569;       /* slate */
+      --muted2: #64748b;
+      --line: rgba(11,18,32,.12);
+      --shadow: 0 18px 60px rgba(11,18,32,.10);
+      --radius: 18px;
 
-.hero {
-  height:100vh;
-  background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)), url('hero.jpg') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-}
+      --accent: #1d4ed8;
+      --accent2: #2563eb;
 
-.hero-content {max-width:900px;}
-.hero h1 {font-size:64px; font-weight:600; margin-bottom:24px;}
-.hero p {font-size:20px; color:#cfcfcf; margin-bottom:40px;}
+      --max: 1140px;
+      --pad: 22px;
+    }
 
-.button {
-  display:inline-block;
-  padding:16px 40px;
-  border:1px solid #fff;
-  text-decoration:none;
-  color:#fff;
-  transition:all .3s ease;
-}
-.button:hover {background:#fff; color:#000;}
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "Archivo", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(900px 500px at 20% -10%, rgba(29,78,216,.10), transparent 60%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(37,99,235,.08), transparent 55%),
+                  var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.25;
+    }
 
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:40px;
-}
+    a{ color: inherit; text-decoration: none; }
+    .container{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
 
-.card {
-  position:relative;
-  height:500px;
-  overflow:hidden;
-}
+    /* Top nav */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(245,243,239,.78);
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height: 72px;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      letter-spacing: .2px;
+      font-weight: 700;
+    }
+    .mark{
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 25px rgba(29,78,216,.35);
+    }
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      color: rgba(11,18,32,.78);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .navlinks a{
+      padding: 10px 10px;
+      border-radius: 12px;
+    }
+    .navlinks a:hover{
+      background: rgba(11,18,32,.06);
+    }
 
-.card img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(0.75);
-  transition:transform .6s ease;
-}
+    .actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.14);
+      background: rgba(255,255,255,.70);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: #fff; border-color: rgba(11,18,32,.22); }
+    .btn.primary{
+      border: 1px solid rgba(29,78,216,.28);
+      background: linear-gradient(135deg, rgba(29,78,216,.98), rgba(37,99,235,.95));
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(29,78,216,.22);
+    }
+    .btn.primary:hover{ transform: translateY(-1px); }
+    .lang{
+      display:inline-flex;
+      border: 1px solid rgba(11,18,32,.14);
+      background: rgba(255,255,255,.55);
+      border-radius: 14px;
+      overflow:hidden;
+    }
+    .lang button{
+      border:0;
+      background: transparent;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 12px;
+      color: rgba(11,18,32,.75);
+      cursor: pointer;
+    }
+    .lang button.active{
+      background: rgba(11,18,32,.08);
+      color: var(--ink);
+    }
 
-.card:hover img {transform:scale(1.05);}
+    /* Hero */
+    .hero{
+      padding: 26px 0 10px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
 
-.card-content {
-  position:absolute;
-  bottom:40px;
-  left:40px;
-  right:40px;
-}
+    .heroCopy{
+      border-radius: 28px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      position: relative;
+      overflow:hidden;
+    }
+    .heroCopy:before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at 30% 30%, rgba(29,78,216,.18), transparent 60%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.12);
+      background: rgba(255,255,255,.55);
+      color: rgba(11,18,32,.78);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .2px;
+      margin-bottom: 18px;
+    }
+    .kicker .dot{
+      width: 7px; height: 7px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
 
-.card h2 {font-size:28px; margin-bottom:12px;}
-.card p {color:#ddd;}
+    h1{
+      margin: 0 0 12px;
+      font-size: 56px;
+      line-height: 1.02;
+      letter-spacing: -1px;
+    }
+    .subhead{
+      margin: 0 0 20px;
+      font-size: 16px;
+      color: rgba(11,18,32,.78);
+      max-width: 56ch;
+      line-height: 1.45;
+    }
+    .heroCtas{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .metaRow{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: rgba(11,18,32,.70);
+      font-size: 13px;
+    }
+    .metaPill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.55);
+    }
+    .metaPill b{ color: rgba(11,18,32,.88); }
 
-.statement {
-  max-width:900px;
-  font-size:32px;
-  font-weight:300;
-  color:#ddd;
-}
+    .heroImage{
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: var(--shadow);
+      position: relative;
 
-footer {
-  padding:60px 8%;
-  border-top:1px solid #222;
-  color:#aaa;
-  font-size:14px;
-}
-</style>
+      /* IMPORTANT: Uses your uploaded hero image in repo root */
+      background:
+        linear-gradient(180deg, rgba(11,18,32,.16), rgba(11,18,32,.30)),
+        url('hero.jpeg') center/cover no-repeat;
+      min-height: 420px;
+    }
+    .heroImage:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(700px 380px at 70% 15%, rgba(29,78,216,.18), transparent 55%),
+        radial-gradient(700px 380px at 30% 90%, rgba(37,99,235,.10), transparent 55%);
+      pointer-events:none;
+    }
+    .heroOverlay{
+      position:absolute;
+      inset:auto 18px 18px 18px;
+      border-radius: 22px;
+      background: rgba(11,18,32,.55);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 16px 16px;
+      color: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+    }
+    .heroOverlay .small{
+      font-size: 12px;
+      color: rgba(255,255,255,.75);
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    /* Sections */
+    section{
+      padding: 56px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 28px;
+      letter-spacing: -0.4px;
+    }
+    .sectionHead p{
+      margin:0;
+      color: rgba(11,18,32,.72);
+      max-width: 60ch;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .card{
+      border-radius: 22px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+      min-height: 240px;
+      display:flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .card .img{
+      position:absolute;
+      inset:0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.02) contrast(1.02);
+      transform: scale(1.03);
+    }
+    .card .veil{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(11,18,32,.58), rgba(11,18,32,.16));
+    }
+    .cardContent{
+      position: relative;
+      padding: 18px;
+      color: rgba(255,255,255,.92);
+    }
+    .cardContent h3{
+      margin:0 0 6px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .cardContent p{
+      margin:0;
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      line-height: 1.35;
+      max-width: 50ch;
+    }
+
+    .featureRow{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+    .panel{
+      border-radius: 22px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .bullets{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display:grid;
+      gap: 10px;
+    }
+    .bullets li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(11,18,32,.82);
+      line-height: 1.4;
+      font-size: 14px;
+    }
+    .check{
+      width: 18px; height: 18px;
+      border-radius: 6px;
+      background: rgba(29,78,216,.12);
+      border: 1px solid rgba(29,78,216,.28);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+    .check svg{ width: 12px; height: 12px; fill: var(--accent); }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .stat{
+      border-radius: 18px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.60);
+      padding: 14px;
+    }
+    .stat .num{
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .stat .lbl{
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(11,18,32,.70);
+      line-height: 1.35;
+    }
+
+    .ctaBand{
+      border-radius: 28px;
+      padding: 26px;
+      border: 1px solid rgba(11,18,32,.10);
+      background:
+        radial-gradient(900px 400px at 20% 30%, rgba(29,78,216,.14), transparent 60%),
+        radial-gradient(900px 400px at 80% 70%, rgba(37,99,235,.12), transparent 60%),
+        rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ctaBand h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .ctaBand p{
+      margin: 6px 0 0;
+      color: rgba(11,18,32,.72);
+      font-size: 13px;
+      line-height: 1.4;
+      max-width: 70ch;
+    }
+
+    footer{
+      padding: 28px 0 40px;
+      color: rgba(11,18,32,.65);
+      font-size: 12px;
+    }
+    .footrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(11,18,32,.10);
+      padding-top: 16px;
+    }
+
+    /* Language toggling */
+    [data-lang="es"]{ display:none; }
+    body.es [data-lang="en"]{ display:none; }
+    body.es [data-lang="es"]{ display:block; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      h1{ font-size: 44px; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .heroImage{ min-height: 360px; }
+      .grid3{ grid-template-columns: 1fr; }
+      .featureRow{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .navlinks{ display:none; }
+      .heroCopy{ padding: 24px; }
+      h1{ font-size: 38px; }
+    }
+  </style>
 </head>
 
-<body>
+<body class="en">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true"></span>
+          <span>Conuco Consulting</span>
+        </a>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Structure for Growth</h1>
-    <p>We help organizations scale through operational clarity, people alignment, and systems that support performance.</p>
-    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" class="button">Let's Talk</a>
-  </div>
-</section>
+        <div class="navlinks" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#approach">Approach</a>
+          <a href="#about">About</a>
+        </div>
 
-<section>
-  <div class="grid">
-    <div class="card">
-      <img src="operations.jpg" alt="Operations">
-      <div class="card-content">
-        <h2>Operational Structure</h2>
-        <p>Designing systems that scale with your business, not against it.</p>
+        <div class="actions">
+          <div class="lang" aria-label="Language selector">
+            <button type="button" class="active" id="btnEN">EN</button>
+            <button type="button" id="btnES">ES</button>
+          </div>
+
+          <a class="btn primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" target="_blank" rel="noopener">
+            Let’s talk
+          </a>
+        </div>
       </div>
     </div>
-    <div class="card">
-      <img src="structure.jpg" alt="Structure">
-      <div class="card-content">
-        <h2>People & HR Strategy</h2>
-        <p>Aligning talent, roles, and accountability to drive performance.</p>
+  </div>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCopy">
+          <div class="kicker" data-lang="en"><span class="dot"></span> People + Operations for scale</div>
+          <div class="kicker" data-lang="es"><span class="dot"></span> Personas + Operaciones para escalar</div>
+
+          <h1 data-lang="en">Structure for growth.</h1>
+          <h1 data-lang="es">Estructura para crecer.</h1>
+
+          <p class="subhead" data-lang="en">
+            Conuco Consulting supports growing companies that need stronger internal structure as they scale.
+            We align people, processes, and performance so the business grows with clarity and stability.
+          </p>
+
+          <p class="subhead" data-lang="es">
+            Conuco Consulting apoya a empresas en crecimiento que necesitan una estructura interna más sólida al escalar.
+            Alineamos personas, procesos y desempeño para crecer con claridad y estabilidad.
+          </p>
+
+          <div class="heroCtas">
+            <a class="btn primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" target="_blank" rel="noopener" data-lang="en">
+              Book a call
+            </a>
+            <a class="btn primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" target="_blank" rel="noopener" data-lang="es">
+              Agenda una llamada
+            </a>
+
+            <a class="btn" href="#services" data-lang="en">What we do</a>
+            <a class="btn" href="#services" data-lang="es">Qué hacemos</a>
+          </div>
+
+          <div class="metaRow" data-lang="en">
+            <span class="metaPill"><b>Hands-on</b> execution</span>
+            <span class="metaPill"><b>25+</b> org scale experience</span>
+            <span class="metaPill"><b>EU + NA</b> operations</span>
+          </div>
+          <div class="metaRow" data-lang="es">
+            <span class="metaPill"><b>Hands-on</b> ejecución</span>
+            <span class="metaPill"><b>25+</b> escala real</span>
+            <span class="metaPill"><b>EU + NA</b> operaciones</span>
+          </div>
+        </div>
+
+        <!-- HERO IMAGE (hero.jpeg in repo root) -->
+        <div class="heroImage" role="img" aria-label="Conuco Consulting hero image">
+          <div class="heroOverlay">
+            <div data-lang="en"><b>Outcome:</b> operational backbone that holds growth.</div>
+            <div data-lang="es"><b>Resultado:</b> columna operativa que sostiene el crecimiento.</div>
+            <div class="small" data-lang="en">People systems, process clarity, and performance cadence.</div>
+            <div class="small" data-lang="es">Sistemas de personas, claridad de procesos y ritmo de desempeño.</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<section>
-  <div class="statement">
-    Growth fails when structure cannot hold it.  
-    We build the operational backbone that allows companies to expand without losing clarity, control, or culture.
-  </div>
-</section>
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2 data-lang="en">What we do</h2>
+          <h2 data-lang="es">Qué hacemos</h2>
+        </div>
+        <p data-lang="en">Three pillars that stop teams from breaking under growth: structure, people systems, and execution.</p>
+        <p data-lang="es">Tres pilares para que el crecimiento no rompa el equipo: estructura, sistemas de personas y ejecución.</p>
+      </div>
 
-<footer>
-© 2026 Conuco Consulting — Madrid / Montreal
-</footer>
+      <div class="grid3">
+        <!-- operations.jpg in repo root -->
+        <div class="card">
+          <div class="img" style="background-image:url('operations.jpg');"></div>
+          <div class="veil"></div>
+          <div class="cardContent">
+            <h3 data-lang="en">Operational Structure</h3>
+            <h3 data-lang="es">Estructura Operativa</h3>
+            <p data-lang="en">Operating model, decision rights, rituals, documentation, and accountability that scale.</p>
+            <p data-lang="es">Modelo operativo, decisiones, rituales, documentación y accountability que escalan.</p>
+          </div>
+        </div>
 
+        <!-- structure.jpg in repo root -->
+        <div class="card">
+          <div class="img" style="background-image:url('structure.jpg');"></div>
+          <div class="veil"></div>
+          <div class="cardContent">
+            <h3 data-lang="en">People & HR Strategy</h3>
+            <h3 data-lang="es">Estrategia de Personas</h3>
+            <p data-lang="en">Org design, performance, compensation logic, hiring, onboarding, and compliance frameworks.</p>
+            <p data-lang="es">Diseño organizacional, desempeño, compensación, selección, onboarding y compliance.</p>
+          </div>
+        </div>
+
+        <!-- hero.jpeg reused (optional third visual) -->
+        <div class="card">
+          <div class="img" style="background-image:url('hero.jpeg');"></div>
+          <div class="veil"></div>
+          <div class="cardContent">
+            <h3 data-lang="en">Process Optimization</h3>
+            <h3 data-lang="es">Optimización de Procesos</h3>
+            <p data-lang="en">Remove friction, improve execution speed, and build systems teams actually follow.</p>
+            <p data-lang="es">Eliminar fricción, acelerar ejecución y construir sistemas que el equipo realmente usa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="featureRow" id="approach">
+        <div class="panel">
+          <h2 style="margin:0 0 8px;" data-lang="en">How we work</h2>
+          <h2 style="margin:0 0 8px;" data-lang="es">Cómo trabajamos</h2>
+
+          <p style="margin:0; color: rgba(11,18,32,.72); line-height:1.45; font-size:14px;" data-lang="en">
+            You get a practical operator, not a slide factory. We diagnose fast, align leadership, and install the minimum structure required to stop chaos from compounding.
+          </p>
+          <p style="margin:0; color: rgba(11,18,32,.72); line-height:1.45; font-size:14px;" data-lang="es">
+            Recibes un operador práctico, no una fábrica de slides. Diagnosticamos rápido, alineamos liderazgo e instalamos la estructura mínima para frenar el caos.
+          </p>
+
+          <ul class="bullets" data-lang="en">
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Rapid diagnosis: people, process, performance.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Build the operating backbone: roles, rituals, decision rights.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Install systems: performance, onboarding, compliance, cadence.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Enable leaders: coaching + change management in the real world.</li>
+          </ul>
+
+          <ul class="bullets" data-lang="es">
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Diagnóstico rápido: personas, procesos, desempeño.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Columna operativa: roles, rituales, decisiones.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Sistemas: desempeño, onboarding, compliance, cadencia.</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.95-4.95a1 1 0 1 1 1.414-1.414l4.243 4.243 8.483-8.483a1 1 0 0 1 1.414 0z"/></svg></span>Liderazgo: coaching + gestión del cambio aplicada.</li>
+          </ul>
+        </div>
+
+        <div class="panel" id="about">
+          <h2 style="margin:0 0 8px;" data-lang="en">About</h2>
+          <h2 style="margin:0 0 8px;" data-lang="es">Sobre mí</h2>
+
+          <p style="margin:0; color: rgba(11,18,32,.72); line-height:1.45; font-size:14px;" data-lang="en">
+            I’m Max Alejandro Sanchez Luckert. People & Operations leader with 13+ years across digital media, advertising, and ag-tech. I’ve built and restructured teams, led compliance across regions, and supported executives through high-change environments.
+          </p>
+          <p style="margin:0; color: rgba(11,18,32,.72); line-height:1.45; font-size:14px;" data-lang="es">
+            Soy Max Alejandro Sanchez Luckert. Líder en Personas y Operaciones con 13+ años en medios digitales, publicidad y ag-tech. He construido y reestructurado equipos, liderado compliance multi-región y apoyado a ejecutivos en entornos de alto cambio.
+          </p>
+
+          <div class="stats" data-lang="en">
+            <div class="stat">
+              <div class="num">EU + NA</div>
+              <div class="lbl">International operations and compliance exposure.</div>
+            </div>
+            <div class="stat">
+              <div class="num">C-suite</div>
+              <div class="lbl">Trusted advisor and operator for senior leadership.</div>
+            </div>
+            <div class="stat">
+              <div class="num">Hands-on</div>
+              <div class="lbl">Systems built to be used, not admired.</div>
+            </div>
+          </div>
+
+          <div class="stats" data-lang="es">
+            <div class="stat">
+              <div class="num">EU + NA</div>
+              <div class="lbl">Operaciones internacionales y compliance multi-país.</div>
+            </div>
+            <div class="stat">
+              <div class="num">C-suite</div>
+              <div class="lbl">Acompañamiento estratégico a dirección.</div>
+            </div>
+            <div class="stat">
+              <div class="num">Hands-on</div>
+              <div class="lbl">Sistemas para usarse, no para decorar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <div class="ctaBand">
+          <div>
+            <h3 data-lang="en">Ready to bring order to growth?</h3>
+            <h3 data-lang="es">¿Listo para poner orden al crecimiento?</h3>
+
+            <p data-lang="en">Book a call and we’ll map what’s breaking, what’s missing, and the first systems to install.</p>
+            <p data-lang="es">Agenda una llamada y mapeamos qué se rompe, qué falta y los primeros sistemas a instalar.</p>
+          </div>
+          <a class="btn primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" target="_blank" rel="noopener" data-lang="en">
+            Let’s talk
+          </a>
+          <a class="btn primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2CbmPJdZlloNwpIRtbkEorHO63k4nt-TG5lG-K6LEgfLzG3da5fSB97mFweior8h0AGr35JjtV" target="_blank" rel="noopener" data-lang="es">
+            Hablemos
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footrow">
+        <div>© <span id="year"></span> Conuco Consulting</div>
+        <div>Madrid · Montreal</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language toggle
+    const btnEN = document.getElementById('btnEN');
+    const btnES = document.getElementById('btnES');
+
+    function setLang(lang){
+      document.body.classList.remove('en','es');
+      document.body.classList.add(lang);
+
+      btnEN.classList.toggle('active', lang === 'en');
+      btnES.classList.toggle('active', lang === 'es');
+
+      document.documentElement.lang = lang;
+    }
+
+    btnEN.addEventListener('click', () => setLang('en'));
+    btnES.addEventListener('click', () => setLang('es'));
+
+    // Default English
+    setLang('en');
+  </script>
 </body>
 </html>
