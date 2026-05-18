@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoGo Study · Phase 1 Reset &amp; Validation · Live</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:       #0a0a0a;
+  --white:       #FEFEFE;
+  --off:         #F7F5F0;
+  --warm-gray:   #8a8278;
+  --red:         #E8352A;
+  --red-dark:    #C42B22;
+  --amber:       #F5C520;
+  --green:       #388E3C;
+  --green-light: #4CAF50;
+  --slate:       #1c2b3a;
+  --text-dark:   #1A1A1A;
+  --text-mid:    #555555;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off); color: var(--text-dark); overflow-x: hidden; }
+
+.slide { min-height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.inner { max-width: 1140px; margin: 0 auto; padding: 56px 64px; width: 100%; flex: 1; display: flex; flex-direction: column; }
+
+.label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+.label-dark { color: var(--warm-gray); }
+.label-red  { color: var(--red); }
+
+.h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 7.5vw, 106px); line-height: 0.92; letter-spacing: 0.01em; }
+.h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.6vw, 46px); font-weight: 700; line-height: 1.12; }
+.h3 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.2vw, 26px); font-weight: 700; line-height: 1.2; }
+.tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; border: 1px solid currentColor; }
+
+.foot { display: flex; justify-content: space-between; align-items: center; padding: 14px 64px; border-top: 1px solid rgba(10,10,10,0.08); }
+.foot-brand { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--red); }
+.foot-pg   { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(10,10,10,0.25); }
+.foot-note { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: rgba(10,10,10,0.18); }
+
+/* SLIDE 1 — COVER */
+.s1 { background: var(--off); color: var(--text-dark); }
+.s1-accent-top { position: absolute; top: 0; right: 0; width: 45%; height: 100%; background: linear-gradient(135deg, transparent 35%, rgba(232,53,42,0.05) 70%, rgba(245,197,32,0.06)); pointer-events: none; }
+.s1-accent-bot { position: absolute; bottom: 0; left: 0; width: 320px; height: 320px; background: radial-gradient(circle, rgba(76,175,80,0.08) 0%, transparent 65%); pointer-events: none; }
+.s1-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(10,10,10,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.035) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+.s1-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.s1-logo { width: 220px; height: auto; display: block; margin-bottom: 36px; }
+.s1-kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; justify-content: center; }
+.s1-kicker-line { width: 36px; height: 2px; background: var(--red); }
+.s1-kicker-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--text-mid); }
+.s1-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 11vw, 160px); line-height: 0.92; letter-spacing: 0.01em; color: var(--text-dark); }
+.s1-title span { color: var(--red); }
+
+/* SLIDE 2 */
+.s2 { background: var(--white); color: var(--text-dark); }
+.s2-accent { position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(135deg, transparent 40%, rgba(232,53,42,0.05)); pointer-events: none; }
+.s2-inner { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.s2 .h2 em { color: var(--red); font-style: italic; }
+.cpa-compare { display: flex; gap: 10px; margin: 28px 0; }
+.cpa-box { flex: 1; padding: 22px 16px; border-radius: 6px; text-align: center; }
+.cpa-box-good { background: rgba(56,142,60,0.1); border: 1px solid rgba(56,142,60,0.3); }
+.cpa-box-bad  { background: rgba(232,53,42,0.1);  border: 1px solid rgba(232,53,42,0.3); }
+.cpa-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; color: rgba(10,10,10,0.45); }
+.cpa-box-value { font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1; margin-bottom: 5px; }
+.cpa-box-good .cpa-box-value { color: var(--green); }
+.cpa-box-bad  .cpa-box-value { color: var(--red); }
+.cpa-box-desc { font-size: 11px; color: rgba(10,10,10,0.5); line-height: 1.4; }
+.cpa-arrow { display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--red); align-self: center; flex-shrink: 0; }
+.s2-message { padding: 20px 22px; background: var(--text-dark); border-left: 3px solid var(--amber); border-radius: 4px; }
+.s2-message p { font-size: 14px; font-weight: 400; line-height: 1.6; color: rgba(247,245,240,0.9); }
+.s2-message p strong { color: var(--white); }
+.s2-message-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 10px 0; }
+.s2-message-list li { font-size: 13px; color: rgba(247,245,240,0.85); line-height: 1.45; padding-left: 12px; position: relative; }
+.s2-message-list li::before { content: '·'; position: absolute; left: 0; color: var(--amber); font-weight: 700; font-size: 16px; top: -3px; }
+.s2-read-title { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(10,10,10,0.4); margin-bottom: 18px; }
+.s2-read-items { display: flex; flex-direction: column; gap: 12px; }
+.s2-read-item { padding: 14px 18px; background: rgba(10,10,10,0.04); border-radius: 4px; border-left: 2px solid var(--red); }
+.s2-read-item:nth-child(2) { border-left-color: var(--amber); }
+.s2-read-item:nth-child(3) { border-left-color: #5a9fd4; }
+.s2-read-item:nth-child(4) { border-left-color: var(--green-light); }
+.s2-read-item strong { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+.s2-read-item span  { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+/* SLIDE 3 */
+.s3 { background: var(--off); color: var(--text-dark); }
+.s3-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 100% 0%, rgba(232,53,42,0.06), transparent 55%), radial-gradient(ellipse 50% 60% at 0% 100%, rgba(245,197,32,0.06), transparent 55%); pointer-events: none; }
+.s3-inner { flex: 1; display: flex; flex-direction: column; position: relative; z-index: 1; gap: 22px; }
+.s3-header .h2 em { color: var(--red); font-style: italic; }
+.timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.tl-card { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 5px; padding: 12px 11px; display: flex; flex-direction: column; box-shadow: 0 1px 8px rgba(10,10,10,0.04); min-height: 230px; }
+.tl-week { font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(10,10,10,0.4); margin-bottom: 6px; }
+.tl-title { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 0.03em; color: var(--text-dark); margin-bottom: 10px; line-height: 1.1; }
+.tl-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.tl-list li { font-size: 10.5px; color: var(--text-mid); line-height: 1.4; padding-left: 9px; position: relative; }
+.tl-list li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-weight: 700; font-size: 14px; top: -2px; }
+.tl-card.gate { background: var(--text-dark); color: var(--white); border-color: var(--text-dark); }
+.tl-card.gate .tl-week { color: var(--amber); }
+.tl-card.gate .tl-title { color: var(--white); }
+.tl-card.gate .tl-list li { color: rgba(247,245,240,0.78); }
+.tl-card.gate .tl-list li::before { color: var(--amber); }
+.tl-card.highlight { border-top: 3px solid var(--red); }
+.tl-card.highlight-amber { border-top: 3px solid var(--amber); }
+.tl-card.highlight-green { border-top: 3px solid var(--green-light); }
+
+.deliv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; }
+.deliv-card { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 20px 22px; box-shadow: 0 2px 12px rgba(10,10,10,0.05); }
+.deliv-card-left { border-top: 3px solid var(--green-light); }
+.deliv-card-right { border-top: 3px solid var(--amber); }
+.deliv-card h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 12px; }
+.deliv-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.deliv-list > li { font-size: 12.5px; color: var(--text-mid); line-height: 1.5; padding-left: 18px; position: relative; }
+.deliv-list > li::before { content: '→'; color: var(--red); font-size: 12px; position: absolute; left: 0; top: 0; line-height: 1.5; }
+.deliv-card-right .deliv-list > li::before { color: var(--amber); }
+.deliv-sub { list-style: none; display: flex; flex-direction: column; gap: 3px; margin: 4px 0 0 18px; padding-left: 0; }
+.deliv-sub li { font-size: 11.5px; color: rgba(10,10,10,0.55); line-height: 1.45; padding-left: 10px; position: relative; }
+.deliv-sub li::before { content: '◦'; position: absolute; left: 0; color: rgba(10,10,10,0.4); font-size: 11px; }
+
+/* SLIDE 4 */
+.s4 { background: var(--white); color: var(--text-dark); }
+.s4-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 100% 0%, rgba(232,53,42,0.04), transparent 55%), radial-gradient(ellipse 50% 60% at 0% 100%, rgba(76,175,80,0.04), transparent 55%); pointer-events: none; }
+.s4-inner { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.s4 .h2 em { color: var(--red); font-style: italic; }
+.s4-ql { padding: 18px 22px; background: rgba(76,175,80,0.06); border: 1px solid rgba(76,175,80,0.2); border-left: 3px solid var(--green-light); border-radius: 4px; }
+.s4-ql-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; display: block; }
+.s4-ql p { font-size: 13.5px; color: var(--text-dark); line-height: 1.65; }
+.s4-ql p + p { margin-top: 8px; }
+
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.metric-card { background: var(--white); border: 1px solid rgba(10,10,10,0.1); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; box-shadow: 0 1px 8px rgba(10,10,10,0.04); }
+.metric-card.w4 { border-top: 3px solid var(--amber); }
+.metric-card.w6 { border-top: 3px solid #5a9fd4; }
+.metric-card.w8 { border-top: 3px solid var(--green-light); }
+.metric-week { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.04em; color: var(--text-dark); line-height: 1; margin-bottom: 3px; }
+.metric-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.4); margin-bottom: 12px; }
+.metric-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.metric-list li { font-size: 12px; color: var(--text-mid); line-height: 1.5; padding-left: 12px; position: relative; }
+.metric-list li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+
+.northstar { padding: 14px 22px; background: var(--text-dark); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.northstar-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 4px; }
+.northstar-value { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 0.02em; line-height: 1.1; }
+
+.gates { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; gap: 12px; }
+.gate-intro { padding: 16px 18px; background: rgba(232,53,42,0.06); border: 1px solid rgba(232,53,42,0.2); border-radius: 4px; }
+.gate-intro h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.gate-intro p { font-size: 12.5px; color: var(--text-dark); line-height: 1.55; }
+.gate-card { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 5px; padding: 14px 16px; box-shadow: 0 1px 6px rgba(10,10,10,0.04); }
+.gate-card h5 { font-size: 12px; font-weight: 600; color: var(--text-dark); margin-bottom: 5px; }
+.gate-card p { font-size: 11.5px; color: var(--text-mid); line-height: 1.5; }
+.gate-card.g1 { border-top: 2px solid var(--amber); }
+.gate-card.g2 { border-top: 2px solid #5a9fd4; }
+.gate-card.g3 { border-top: 2px solid var(--red); }
+
+.criterio { padding: 20px 24px; background: var(--off); border: 1px solid rgba(10,10,10,0.08); border-left: 3px solid var(--green); border-radius: 4px; }
+.criterio-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; display: block; }
+.criterio p { font-size: 13.5px; color: var(--text-dark); line-height: 1.7; }
+.criterio p + p { margin-top: 10px; }
+
+/* SLIDE 5 */
+.s5 { background: var(--off); color: var(--text-dark); }
+.s5-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 0% 0%, rgba(245,197,32,0.06), transparent 55%); pointer-events: none; }
+.s5-inner { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; gap: 20px; }
+.s5 .h2 em { color: var(--green); font-style: italic; }
+
+.op-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; }
+.op-card { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 22px 24px; box-shadow: 0 2px 12px rgba(10,10,10,0.05); border-top: 3px solid var(--green-light); }
+.op-card h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 14px; }
+.op-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.op-list li { font-size: 13px; color: var(--text-mid); line-height: 1.5; display: flex; gap: 10px; align-items: flex-start; }
+.op-list li::before { content: '✓'; color: var(--green-light); font-weight: 700; flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+.op-closer { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(10,10,10,0.06); font-size: 12.5px; color: var(--text-dark); font-weight: 500; line-height: 1.55; }
+
+.cont-section-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 14px; }
+.cont-stack { display: flex; flex-direction: column; gap: 10px; }
+.cont-card { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 5px; padding: 14px 18px; box-shadow: 0 1px 6px rgba(10,10,10,0.04); }
+.cont-card.rec { border-left: 3px solid var(--green-light); }
+.cont-card.mt  { border-left: 3px solid var(--amber); }
+.cont-card.ps  { border-left: 3px solid var(--red); }
+.cont-card h5 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 6px; }
+.cont-card h5 span { color: rgba(10,10,10,0.4); margin-left: 6px; font-size: 9px; }
+.cont-card p { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; }
+
+.excl { padding: 18px 22px; background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-left: 3px solid var(--red); border-radius: 4px; box-shadow: 0 1px 8px rgba(10,10,10,0.04); }
+.excl-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; display: block; }
+.excl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.excl-grid li { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; padding-left: 14px; position: relative; list-style: none; }
+.excl-grid li::before { content: '✕'; position: absolute; left: 0; color: var(--red); font-size: 10px; top: 3px; }
+
+/* SLIDE 6 */
+.s6 { background: var(--white); color: var(--text-dark); }
+.s6-accent { position: absolute; top: 0; left: 0; width: 35%; height: 100%; background: linear-gradient(135deg, rgba(245,197,32,0.06), transparent 60%); pointer-events: none; }
+.s6-inner { flex: 1; display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 1; }
+.s6 .h2 em { color: var(--red); font-style: italic; }
+
+.tldr { padding: 22px 26px; background: var(--text-dark); color: var(--white); border-left: 3px solid var(--amber); border-radius: 4px; }
+.tldr-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; display: block; }
+.tldr-bios { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.tldr-bio strong { color: var(--white); display: block; font-size: 14px; margin-bottom: 6px; letter-spacing: 0.01em; }
+.tldr-bio p { font-size: 13px; line-height: 1.65; color: rgba(247,245,240,0.88); }
+
+.joint { padding: 14px 22px; background: rgba(245,197,32,0.08); border: 1px solid rgba(245,197,32,0.25); border-left: 3px solid var(--amber); border-radius: 4px; }
+.joint-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(10,10,10,0.5); margin-bottom: 6px; display: block; }
+.joint p { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+
+.model-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; align-items: stretch; }
+.model-card { background: var(--off); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 20px 22px; }
+.model-card h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 14px; }
+.model-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.model-list li { font-size: 12.5px; color: var(--text-mid); line-height: 1.5; padding-left: 12px; position: relative; }
+.model-list li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-weight: 700; font-size: 15px; top: -3px; }
+.model-list li strong { color: var(--text-dark); font-weight: 600; }
+.funnel-card { background: var(--off); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 20px 22px; display: flex; flex-direction: column; }
+.funnel-card h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 14px; }
+.funnel-svg-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+.funnel-svg { width: 100%; height: auto; max-height: 160px; }
+
+.refs { background: var(--off); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 18px 22px; }
+.refs-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(10,10,10,0.5); margin-bottom: 12px; display: block; }
+.refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+.refs-item { font-size: 12.5px; color: var(--text-dark); line-height: 1.5; display: flex; flex-direction: column; gap: 2px; padding-left: 14px; position: relative; }
+.refs-item::before { content: '◆'; position: absolute; left: 0; color: var(--amber); font-size: 9px; top: 4px; }
+.refs-item strong { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-dark); font-weight: 500; }
+.refs-item span { font-size: 11px; color: var(--text-mid); }
+
+/* SLIDE 7 LIVE */
+.s7 { background: var(--off); color: var(--text-dark); }
+.s7-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(76,175,80,0.08), transparent 55%), radial-gradient(ellipse 80% 50% at 0% 100%, rgba(232,53,42,0.05), transparent 55%); pointer-events: none; }
+.s7-inner { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.s7 .h2 em { color: var(--red); font-style: italic; }
+.s7-sub { font-size: 15px; color: var(--text-mid); line-height: 1.55; margin-top: 6px; font-weight: 300; }
+
+.inv-block { padding: 18px 22px; background: var(--text-dark); border-left: 3px solid var(--amber); border-radius: 4px; }
+.inv-block-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; display: block; }
+.inv-block p { font-size: 14px; color: rgba(247,245,240,0.9); line-height: 1.65; }
+.inv-headline { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--amber); letter-spacing: 0.02em; margin: 4px 0 10px; }
+
+.tranche-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.tranche { background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(10,10,10,0.05); position: relative; }
+.tranche.t1 { border-top: 3px solid var(--amber); }
+.tranche.t2 { border-top: 3px solid #5a9fd4; }
+.tranche.t3 { border-top: 3px solid var(--green-light); }
+.tranche-pct { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: var(--text-dark); margin-bottom: 4px; }
+.tranche.t1 .tranche-pct { color: var(--amber); }
+.tranche.t2 .tranche-pct { color: #5a9fd4; }
+.tranche.t3 .tranche-pct { color: var(--green); }
+.tranche-trigger { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55); margin-bottom: 10px; }
+.tranche-body { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; flex: 1; }
+.tranche-body strong { color: var(--text-dark); }
+
+.pause-block { padding: 20px 24px; background: rgba(76,175,80,0.07); border: 1px solid rgba(76,175,80,0.25); border-left: 4px solid var(--green); border-radius: 4px; }
+.pause-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; display: block; }
+.pause-block p { font-size: 13.5px; color: var(--text-dark); line-height: 1.7; }
+.pause-block p + p { margin-top: 10px; font-style: italic; color: var(--text-mid); }
+
+.adspend-strip { padding: 14px 22px; background: var(--white); border: 1px solid rgba(10,10,10,0.1); border-left: 3px solid var(--red); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.adspend-left { display: flex; align-items: center; gap: 16px; }
+.adspend-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(10,10,10,0.45); }
+.adspend-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-dark); line-height: 1.1; }
+.adspend-note { font-size: 12px; color: var(--text-mid); line-height: 1.5; text-align: right; max-width: 360px; }
+
+.next-block { padding: 20px 24px; background: var(--white); border: 1px solid rgba(10,10,10,0.08); border-top: 3px solid var(--red); border-radius: 6px; box-shadow: 0 2px 12px rgba(10,10,10,0.05); }
+.next-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; display: block; }
+.next-lead { font-size: 14px; color: var(--text-dark); line-height: 1.55; margin-bottom: 14px; }
+.next-lead strong { color: var(--red); }
+.next-steps { list-style: none; display: flex; gap: 12px; }
+.next-step { flex: 1; padding: 14px 16px; background: var(--off); border-radius: 5px; border-left: 2px solid var(--red); display: flex; gap: 12px; align-items: flex-start; }
+.next-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--red); line-height: 1; flex-shrink: 0; }
+.next-step-text { font-size: 12.5px; color: var(--text-dark); line-height: 1.5; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.s1-inner > * { animation: fadeUp 0.7s ease both; }
+.s1-inner > *:nth-child(2) { animation-delay: 0.12s; }
+@media print { .slide { page-break-after: always; } }
+
+@media (max-width: 900px) {
+  .inner { padding: 40px 28px; }
+  .foot { padding: 12px 28px; }
+  .s1-inner, .s2-inner, .deliv-grid, .op-grid, .model-grid, .tldr-bios, .refs-grid, .tranche-grid, .gates { grid-template-columns: 1fr; gap: 24px; }
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .metrics-grid, .excl-grid, .next-steps { grid-template-columns: 1fr; }
+  .next-steps { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<section class="slide s1">
+  <div class="s1-accent-top"></div>
+  <div class="s1-accent-bot"></div>
+  <div class="s1-grid"></div>
+  <div class="inner">
+    <div class="s1-inner">
+      <img class="s1-logo" src="logo GGS.webp" alt="GoGo Study" onerror="this.style.display='none'">
+      <div class="s1-kicker">
+        <div class="s1-kicker-line"></div>
+        <span class="s1-kicker-label">Propuesta · 18 Mayo 2026</span>
+        <div class="s1-kicker-line"></div>
+      </div>
+      <h1 class="s1-title">Phase 1<br><span>Reset &amp; Validation</span></h1>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">01 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide s2">
+  <div class="s2-accent"></div>
+  <div class="inner">
+    <div class="label label-dark">02 · Lectura Compartida</div>
+    <div class="s2-inner">
+      <div>
+        <h2 class="h2">El motor existió.<br>Lo que se rompió fue <em>la señal</em>.</h2>
+        <div class="cpa-compare">
+          <div class="cpa-box cpa-box-good">
+            <div class="cpa-box-label">CPA Histórico</div>
+            <div class="cpa-box-value">$40-60</div>
+            <div class="cpa-box-desc">USD por qualified booked call</div>
+          </div>
+          <div class="cpa-arrow">→</div>
+          <div class="cpa-box cpa-box-bad">
+            <div class="cpa-box-label">CPA Post-Ruptura</div>
+            <div class="cpa-box-value">$200+</div>
+            <div class="cpa-box-desc">tracking roto, señal contaminada, deriva creativa</div>
+          </div>
+        </div>
+        <div class="s2-message">
+          <p>El fix es <strong>reset de sistema</strong>:</p>
+          <ul class="s2-message-list">
+            <li>Pixel reset + CAPI</li>
+            <li>Señal</li>
+            <li>Landing</li>
+            <li>Eventos</li>
+            <li>New Creative Direction</li>
+            <li>Attribution</li>
+          </ul>
+          <p>Una reconstrucción de base. <strong>No es un problema de spend.</strong></p>
+        </div>
+      </div>
+      <div>
+        <div class="s2-read-title">Lectura en 4 líneas</div>
+        <div class="s2-read-items">
+          <div class="s2-read-item">
+            <strong>Demanda validada</strong>
+            <span>Históricamente $40-60 USD por qualified booked call. El producto sí captura.</span>
+          </div>
+          <div class="s2-read-item">
+            <strong>Señal colapsada</strong>
+            <span>CPA $200+ por ruptura de tracking y deriva creativa. Meta perdió capacidad de optimizar.</span>
+          </div>
+          <div class="s2-read-item">
+            <strong>Timeline</strong>
+            <span>8 semanas son el piso operativo para empezar a leer señal sólida. Phase 1: 8 semanas. Phase 2 cubre las siguientes 4 semanas ya con una señal más madura.</span>
+          </div>
+          <div class="s2-read-item">
+            <strong>Phase 1 reconstruye antes de escalar</strong>
+            <span>No empujamos más presupuesto sobre infraestructura que no lee. Validamos primero.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">02 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide s3">
+  <div class="s3-bg"></div>
+  <div class="inner">
+    <div class="label label-red">03 · Scope, Timeline &amp; Deliverables</div>
+    <div class="s3-inner">
+      <div class="s3-header">
+        <h2 class="h2">8 semanas de reconstrucción.<br>Decisión por <em>hitos</em>, no por contrato.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-card highlight-amber">
+          <div class="tl-week">Week 0</div>
+          <div class="tl-title">Kickoff</div>
+          <ul class="tl-list">
+            <li>Sesión 1.5h</li>
+            <li>Provisioning de accesos</li>
+            <li>Asset audit</li>
+            <li>Alineación roles + SLA</li>
+          </ul>
+        </div>
+        <div class="tl-card highlight">
+          <div class="tl-week">Weeks 1-2</div>
+          <div class="tl-title">Build</div>
+          <ul class="tl-list">
+            <li>Limpieza de BM</li>
+            <li>Pixel + CAPI</li>
+            <li>Event mapping</li>
+            <li>Landing</li>
+            <li>Wiring CRM</li>
+            <li>Audiencias</li>
+            <li>Producción creativa (9 piezas)</li>
+          </ul>
+        </div>
+        <div class="tl-card highlight">
+          <div class="tl-week">Week 3</div>
+          <div class="tl-title">Activación</div>
+          <ul class="tl-list">
+            <li>Formularios + landing en producción</li>
+            <li>Campañas en vivo</li>
+            <li>Tracking validado punto a punto</li>
+          </ul>
+        </div>
+        <div class="tl-card gate">
+          <div class="tl-week">Week 4 · Gate</div>
+          <div class="tl-title">Primera Lectura</div>
+          <ul class="tl-list">
+            <li>Primera lectura real</li>
+            <li>Decision Gate 1</li>
+            <li>Fix, redeploy o recalibración</li>
+          </ul>
+        </div>
+        <div class="tl-card highlight-amber">
+          <div class="tl-week">Weeks 5-6</div>
+          <div class="tl-title">Optimización</div>
+          <ul class="tl-list">
+            <li>Doble apuesta en ganadores</li>
+            <li>Rotación creativa</li>
+            <li>Ajuste de audiencias</li>
+            <li>Refinamiento copy + CTR</li>
+          </ul>
+        </div>
+        <div class="tl-card highlight-green">
+          <div class="tl-week">Week 7</div>
+          <div class="tl-title">Validación Comercial</div>
+          <ul class="tl-list">
+            <li>Leads contactables</li>
+            <li>Calidad de conversación</li>
+            <li>Objeciones recurrentes</li>
+            <li>Conversión a booked call</li>
+          </ul>
+        </div>
+        <div class="tl-card gate">
+          <div class="tl-week">Week 8 · Gate</div>
+          <div class="tl-title">Cierre</div>
+          <ul class="tl-list">
+            <li>Informe final</li>
+            <li>Decisión go/no-go Phase 2</li>
+            <li>Basada en data, no en promesa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="deliv-grid">
+        <div class="deliv-card deliv-card-left">
+          <h4>Lo Que Entregamos</h4>
+          <ul class="deliv-list">
+            <li>
+              Dirección estratégica + account management
+              <ul class="deliv-sub">
+                <li>Week work scope cada lunes</li>
+                <li>Sesión de 1h los viernes para revisar avances de la semana</li>
+              </ul>
+            </li>
+            <li>
+              Producción creativa ejecutiva (9 piezas: 6 video + 3 estáticos)
+              <ul class="deliv-sub">
+                <li>Una sesión de feedback agregado por visual (flexible)</li>
+                <li>Producción en base a hooks validados o propuestos por GGS</li>
+              </ul>
+            </li>
+            <li>Landing + arquitectura de tracking (pixel/CAPI)</li>
+            <li>Setup, optimización y gestión diaria de campañas</li>
+            <li>Reporting semanal + informe final (<a href="https://datastudio.google.com/reporting/023c1dc6-17fc-4dd0-b7ec-204af5a8cd37/page/p_ubqv100hwc" target="_blank" rel="noopener" style="color:var(--red); text-decoration:underline;">ver muestra</a>)</li>
+            <li>Definición del flujo de handoff a CRM</li>
+          </ul>
+        </div>
+        <div class="deliv-card deliv-card-right">
+          <h4>Lo Que Entrega GGS</h4>
+          <ul class="deliv-list">
+            <li>Provisioning de accesos a pixel y tracking</li>
+            <li>Assets de marca (logo, colores, librería creativa existente)</li>
+            <li>Hooks / ángulos creativos: validados o propuestos directamente por GGS (nadie conoce mejor la marca)</li>
+            <li>3-4 testimonios reales (video o foto)</li>
+            <li>Material de estudiantes, destinos, clases, experiencias</li>
+            <li>Respuestas claras a objeciones (precio, financiación, visa, alojamiento, seguridad, duración, resultados)</li>
+            <li>1-3 videos founder-led frescos</li>
+            <li>Equipo comercial atendiendo inbound dentro del SLA acordado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">03 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide s4">
+  <div class="s4-bg"></div>
+  <div class="inner">
+    <div class="label label-red">04 · Success Criteria, Gates &amp; Criterio de Avance</div>
+    <div class="s4-inner">
+      <h2 class="h2">Qualified lead, métricas semanales<br>y <em>compromiso de ejecución</em>.</h2>
+
+      <div class="s4-ql">
+        <span class="s4-ql-label">Qualified Lead</span>
+        <p>Completa quiz, reserva slot, asiste a la llamada, cumple criterios mínimos (capacidad financiera real, timeline ≤12 meses, motivación: idioma o avance de carrera).</p>
+        <p>No prometemos Claudias precalificadas listas para pagar. Esa fricción es real y necesaria: los que no convierten siguen alimentando el pixel y ayudan a estrechar ICPs para escalar mejor.</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card w4">
+          <div class="metric-week">Week 4</div>
+          <div class="metric-sub">Primera lectura</div>
+          <ul class="metric-list">
+            <li>Campañas entregando sin bloqueo</li>
+            <li>CTR ≥0.8-1%</li>
+            <li>Leads entrando de forma estable</li>
+            <li>CPL controlado</li>
+            <li>Primeras señales cualitativas: ¿entienden la oferta?, ¿preguntan por precio?, ¿hay interés real?</li>
+          </ul>
+        </div>
+        <div class="metric-card w6">
+          <div class="metric-week">Week 6</div>
+          <div class="metric-sub">Estabilización</div>
+          <ul class="metric-list">
+            <li>CPL estabilizándose</li>
+            <li>Ángulo creativo ganador identificado</li>
+            <li>Formularios con volumen suficiente para interpretar patrones</li>
+            <li>Primeras conversaciones comerciales útiles</li>
+            <li>Objeciones recurrentes identificadas</li>
+          </ul>
+        </div>
+        <div class="metric-card w8">
+          <div class="metric-week">Week 8</div>
+          <div class="metric-sub">Decisión go/no-go</div>
+          <ul class="metric-list">
+            <li>CPL en rango defendible</li>
+            <li>Volumen suficiente para decisión go/no-go</li>
+            <li>Señal comercial real (leads contactables, preguntas coherentes, info requests, booked calls)</li>
+            <li>Aprendizaje claro por país, edad, mensaje, formato y nivel de intención</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="northstar">
+        <div>
+          <div class="northstar-label">North Star KPI</div>
+          <div class="northstar-value">Cost per qualified booked call</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="northstar-label">Benchmark histórico</div>
+          <div class="northstar-value">$40-60 USD</div>
+        </div>
+      </div>
+
+      <div class="gates">
+        <div class="gate-intro">
+          <h4>Decision Gate · Week 4</h4>
+          <p>La data dicta el siguiente movimiento. No empujamos escala sobre señal rota.</p>
+        </div>
+        <div class="gate-card g1">
+          <h5>Issue de setup</h5>
+          <p>Tracking, pixel o audiencia. Fix técnico y continúa.</p>
+        </div>
+        <div class="gate-card g2">
+          <h5>Issue de ángulo creativo</h5>
+          <p>Rotación de creatividad, redeploy en Week 5.</p>
+        </div>
+        <div class="gate-card g3">
+          <h5>Issue de demanda</h5>
+          <p>Señal real de mercado insuficiente. Lo levantamos, recalibramos o recomendamos pausa.</p>
+        </div>
+      </div>
+
+      <div class="criterio">
+        <span class="criterio-label">Phase 1 · Criterio de Avance</span>
+        <p>Phase 1 reduce riesgo porque valida señal antes de escalar. No se construye todo el sistema desde el inicio: se prueba si existe demanda capturable a un coste razonable, con volumen suficiente y calidad comercial real.</p>
+        <p>La siguiente fase solo se activa si hay señales objetivas: volumen mínimo, CPL defendible y calidad de leads/agendas. Si la señal no es suficiente, se pausa, se analizan aprendizajes y se evita forzar una inversión no validada.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">04 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide s5">
+  <div class="s5-bg"></div>
+  <div class="inner">
+    <div class="label label-dark">05 · Continuidad &amp; Exclusiones</div>
+    <div class="s5-inner">
+      <h2 class="h2">Qué queda operativo y <em>qué queda por evaluar</em></h2>
+
+      <div class="op-grid">
+        <div class="op-card">
+          <h4>Lo que queda operativo al cierre de Phase 1</h4>
+          <ul class="op-list">
+            <li>Campañas activas o pausadas en la cuenta del cliente</li>
+            <li>Formularios nativos creados y configurados</li>
+            <li>Landing live y tracked</li>
+            <li>Audiencias y segmentaciones testeadas</li>
+            <li>Creatividades utilizadas + aprendizajes por ángulo</li>
+            <li>Informe de rendimiento (CPL, volumen, tasa de contacto, calidad, objeciones)</li>
+            <li>Base de leads generada durante el piloto</li>
+            <li>Flujo documentado: ad → form/landing → CRM → contacto comercial</li>
+            <li>Recomendación clara: escalar, corregir, migrar o pausar</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="cont-section-title">Continuidad · Phase 2</h4>
+          <div class="cont-stack">
+            <div class="cont-card rec">
+              <h5>Escalar <span>recomendado</span></h5>
+              <p>Señal clara, 4 semanas de optimización y expansión.<br><span style="color:rgba(10,10,10,0.45); font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase;">Pricing TBD</span></p>
+            </div>
+            <div class="cont-card mt">
+              <h5>Mantener <span>optional</span></h5>
+              <p>Señal parcial, optimización ligera y lectura continua.<br><span style="color:rgba(10,10,10,0.45); font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase;">Pricing TBD</span></p>
+            </div>
+            <div class="cont-card ps">
+              <h5>Pausar <span>si no hay señal</span></h5>
+              <p>Sin señal suficiente, no se activa Phase 2.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="excl">
+        <span class="excl-label">Exclusiones · Phase 1</span>
+        <ul class="excl-grid">
+          <li>Sin SEO, blog, newsletters, embajadores o contenido orgánico</li>
+          <li>Sin rediseño web, gestión CRM, coaching de ventas, ICPs adicionales</li>
+          <li>Sin multi-plataforma (TikTok, Google, YouTube) en Phase 1</li>
+          <li>Sin WhatsApp diario, recap diario ni respuesta inmediata (feedback agrupado, ventana razonable)</li>
+          <li>Sin continuidad si ad spend Meta (USD 1.500/mes × 2 meses, USD 3.000 total) no se cubre por GGS</li>
+          <li>Sin fórmula mágica para generar miles de leads precalificados</li>
+          <li>Ad spend siempre directo de GGS a Meta</li>
+          <li>Sin garantía de ventas. No controlamos el closing. Entregamos qualified booked calls.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">05 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide s6">
+  <div class="s6-accent"></div>
+  <div class="inner">
+    <div class="label label-red">06 · Quién Hace el Trabajo</div>
+    <div class="s6-inner">
+      <h2 class="h2">Un punto de contacto, estrategia senior<br>y <em>ejecución creativa coordinada</em>.</h2>
+
+      <div class="tldr">
+        <span class="tldr-label">TLDR</span>
+        <div class="tldr-bios">
+          <div class="tldr-bio">
+            <strong>Max Sanchez Luckert</strong>
+            <p>Lidera la estrategia full funnel, coordinación y lectura comercial del proyecto. 15 años de experiencia en operaciones, growth y human resources, con paso por Deloitte, NEO-OOH, Lufa Farms y Narcity Media Group. Socio y consultor principal de Conuco Consulting</p>
+          </div>
+          <div class="tldr-bio">
+            <strong>Christian Azuaje</strong>
+            <p>Lidera la capa creativa. Motion Designer en VCCP Spain. Productor multimedia, editor de video y especialista en motion graphics, postproducción, diseño de sonido y contenido aumentado con IA generativa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="joint">
+        <span class="joint-label">Cómo se ejecuta</span>
+        <p>Detrás del proyecto, un equipo de partners especializados por bucket. La capa de paid media se ejecuta vía partner operativo. Full funnel execution acreditado con clientes en España y Canadá.</p>
+      </div>
+
+      <div class="model-grid">
+        <div class="model-card">
+          <h4>Modelo de Trabajo</h4>
+          <ul class="model-list">
+            <li><strong>Max:</strong> estrategia full funnel, coordinación, lectura comercial, reporting</li>
+            <li><strong>Christian:</strong> producción creativa, edición, motion graphics, assets de campaña</li>
+            <li><strong>Ejecución:</strong> campañas, tracking, optimización coordinadas desde un solo frente</li>
+            <li><strong>Cliente:</strong> un punto de contacto, reporting unificado, sin handoffs visibles</li>
+          </ul>
+        </div>
+        <div class="funnel-card">
+          <h4>Paid Media · Funnel</h4>
+          <div class="funnel-svg-wrap">
+            <svg class="funnel-svg" viewBox="0 0 460 140" xmlns="http://www.w3.org/2000/svg" aria-label="Paid media funnel">
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,4 L0,8 z" fill="#8a8278"/>
+                </marker>
+              </defs>
+              <!-- 5 stage circles -->
+              <g font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle">
+                <!-- Stage 1: Ad -->
+                <circle cx="40" cy="60" r="28" fill="#F5C520" opacity="0.18"/>
+                <circle cx="40" cy="60" r="22" fill="#F5C520"/>
+                <text x="40" y="64" fill="#0a0a0a" font-weight="600">AD</text>
+                <text x="40" y="108" fill="#555555" font-size="8.5">Creative + Form</text>
+                <!-- Arrow -->
+                <line x1="70" y1="60" x2="100" y2="60" stroke="#8a8278" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <!-- Stage 2: Landing -->
+                <circle cx="130" cy="60" r="28" fill="#E8352A" opacity="0.18"/>
+                <circle cx="130" cy="60" r="22" fill="#E8352A"/>
+                <text x="130" y="64" fill="#FEFEFE" font-weight="600">LP</text>
+                <text x="130" y="108" fill="#555555" font-size="8.5">Landing</text>
+                <!-- Arrow -->
+                <line x1="160" y1="60" x2="190" y2="60" stroke="#8a8278" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <!-- Stage 3: Form -->
+                <circle cx="220" cy="60" r="28" fill="#5a9fd4" opacity="0.18"/>
+                <circle cx="220" cy="60" r="22" fill="#5a9fd4"/>
+                <text x="220" y="64" fill="#FEFEFE" font-weight="600">LEAD</text>
+                <text x="220" y="108" fill="#555555" font-size="8.5">Form</text>
+                <!-- Arrow -->
+                <line x1="250" y1="60" x2="280" y2="60" stroke="#8a8278" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <!-- Stage 4: CRM -->
+                <circle cx="310" cy="60" r="28" fill="#1c2b3a" opacity="0.18"/>
+                <circle cx="310" cy="60" r="22" fill="#1c2b3a"/>
+                <text x="310" y="64" fill="#FEFEFE" font-weight="600">CRM</text>
+                <text x="310" y="108" fill="#555555" font-size="8.5">Pipeline</text>
+                <!-- Arrow -->
+                <line x1="340" y1="60" x2="370" y2="60" stroke="#8a8278" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <!-- Stage 5: Booked Call -->
+                <circle cx="408" cy="60" r="32" fill="#4CAF50" opacity="0.2"/>
+                <circle cx="408" cy="60" r="26" fill="#4CAF50"/>
+                <text x="408" y="58" fill="#FEFEFE" font-weight="700" font-size="8.5">BOOKED</text>
+                <text x="408" y="68" fill="#FEFEFE" font-weight="700" font-size="8.5">CALL</text>
+                <text x="408" y="115" fill="#388E3C" font-size="8.5" font-weight="600">North Star</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="refs">
+        <span class="refs-label">Landings de Referencia</span>
+        <div class="refs-grid">
+          <div class="refs-item">
+            <a href="https://www.macmillaneducationeverywhere.com" target="_blank" rel="noopener" style="color:var(--text-dark); text-decoration:none;"><strong>macmillaneducationeverywhere.com ↗</strong></a>
+            <span>Sector educación</span>
+          </div>
+          <div class="refs-item">
+            <a href="https://gammatech.school" target="_blank" rel="noopener" style="color:var(--text-dark); text-decoration:none;"><strong>gammatech.school ↗</strong></a>
+            <span>Sector educación</span>
+          </div>
+          <div class="refs-item">
+            <a href="https://mioti.es/es/school" target="_blank" rel="noopener" style="color:var(--text-dark); text-decoration:none;"><strong>mioti.es/es/school ↗</strong></a>
+            <span>Sector educación</span>
+          </div>
+          <div class="refs-item">
+            <a href="https://www.narcitymedia.com/food-and-bev" target="_blank" rel="noopener" style="color:var(--text-dark); text-decoration:none;"><strong>narcitymedia.com/food-and-bev ↗</strong></a>
+            <span>Sector comidas y bebidas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset</span>
+    <span class="foot-pg">06 / 07</span>
+    <span class="foot-note">Confidencial</span>
+  </div>
+</section>
+
+<!-- SLIDE 7 · LIVE (pricing) -->
+<section class="slide s7">
+  <div class="s7-bg"></div>
+  <div class="inner">
+    <div class="label label-red">07 · Cierre &amp; Próximo Paso</div>
+    <div class="s7-inner">
+      <h2 class="h2">Cierre &amp; <em>Próximo Paso</em></h2>
+
+      <div class="inv-block">
+        <span class="inv-block-label">Inversión Phase 1</span>
+        <div class="inv-headline">8 semanas · USD $4.300</div>
+        <p>Estructura de hitos detallada abajo. Mecánica protectora que aplica al monto.</p>
+      </div>
+
+      <div class="tranche-grid">
+        <div class="tranche t1">
+          <div class="tranche-pct">40%</div>
+          <div class="tranche-trigger">Kickoff · Week 0</div>
+          <div class="tranche-body">Cubre <strong>setup, landing build, arquitectura de tracking</strong> y producción creativa de las 9 piezas.</div>
+        </div>
+        <div class="tranche t2">
+          <div class="tranche-pct">30%</div>
+          <div class="tranche-trigger">Milestone · Week 4</div>
+          <div class="tranche-body">Se activa si hay <strong>señal presente</strong>: campañas entregando, CPL controlado, leads entrando de forma estable. Cubre optimización en curso.</div>
+        </div>
+        <div class="tranche t3">
+          <div class="tranche-pct">30%</div>
+          <div class="tranche-trigger">Cierre · Week 8</div>
+          <div class="tranche-body">Cubre <strong>informe final, recomendación Phase 2</strong> y handoff completo.</div>
+        </div>
+      </div>
+
+      <div class="pause-block">
+        <span class="pause-label">Mecánica de Pausa</span>
+        <p>Si Week 4 no muestra señal suficiente y recomendamos pausa, el tramo Week 5-8 (30%) <strong>no se factura</strong>. GGS conserva todo lo entregado hasta Week 4: campañas, landing, formularios, audiencias testeadas, base de leads e informe parcial.</p>
+        <p>No condicionamos la siguiente inversión a una promesa de venta, sino a señales objetivas de mercado.</p>
+      </div>
+
+      <div class="adspend-strip">
+        <div class="adspend-left">
+          <div>
+            <div class="adspend-label">Ad Spend (separado)</div>
+            <div class="adspend-value">USD 1.500/mes · 2 meses</div>
+          </div>
+        </div>
+        <div class="adspend-note">Mínimo 2 meses comprometidos (USD 3.000 total). Pagado directo por GGS a Meta. No pasa por nuestra facturación.</div>
+      </div>
+
+      <div class="next-block">
+        <span class="next-label">Próximo Paso</span>
+        <ol class="next-steps">
+          <li class="next-step">
+            <div class="next-step-num">01</div>
+            <div class="next-step-text">Firma de scope</div>
+          </li>
+          <li class="next-step">
+            <div class="next-step-num">02</div>
+            <div class="next-step-text">Provisioning de accesos (Business Manager, dominios, CRM)</div>
+          </li>
+          <li class="next-step">
+            <div class="next-step-num">03</div>
+            <div class="next-step-text">Kickoff scheduling esta semana</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="foot-brand">GoGo Study · Phase 1 Reset · LIVE</span>
+    <span class="foot-pg">07 / 07</span>
+    <span class="foot-note">Uso interno · No compartir</span>
+  </div>
+</section>
+
+</body>
+</html>
