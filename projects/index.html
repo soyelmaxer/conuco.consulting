@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conuco Consulting | Project Updates</title>
+  <meta name="description" content="Live project updates from Conuco Consulting. Current status, milestones, and next steps for active engagements." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#111111" />
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --ink: #111111;
+      --muted: #5f5a52;
+      --line: rgba(17, 17, 17, 0.14);
+      --card: #fffaf2;
+      --accent: #2f4a35;
+      --accent-soft: #dfe8d9;
+      --max: 920px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47, 74, 53, 0.12), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 243, 236, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 72px; display: flex; align-items: center;
+      justify-content: space-between; gap: 18px;
+    }
+    .brand { font-weight: 750; letter-spacing: -0.03em; font-size: 1.05rem; }
+    .lang {
+      display: inline-flex; border: 1px solid var(--line);
+      border-radius: 999px; padding: 4px; gap: 2px; background: rgba(255,255,255,0.35);
+    }
+    .lang button {
+      border: 0; border-radius: 999px; padding: 7px 10px;
+      background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: 0.85rem;
+    }
+    .lang button.active { background: var(--ink); color: white; }
+    .hero { padding: 70px 0 26px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--accent); font-weight: 750; font-size: 0.92rem; margin-bottom: 16px;
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--accent); display: inline-block; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 0.98; letter-spacing: -0.055em; margin: 0 0 18px; }
+    .lead { max-width: 640px; color: var(--muted); font-size: clamp(1.02rem, 2vw, 1.2rem); margin: 0; }
+    section { padding: 26px 0 64px; }
+    .list { display: grid; gap: 14px; }
+    .proj {
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 24px 26px; background: rgba(255, 250, 242, 0.78);
+      border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(17,17,17,0.05);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+    .proj:hover { transform: translateY(-2px); box-shadow: 0 22px 60px rgba(17,17,17,0.09); }
+    .proj h3 { margin: 0 0 6px; font-size: 1.3rem; letter-spacing: -0.035em; }
+    .proj p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+    .tag {
+      display: inline-block; margin-bottom: 10px; font-size: 0.74rem; font-weight: 750;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+      background: var(--accent-soft); padding: 4px 10px; border-radius: 999px;
+    }
+    .arrow { font-size: 1.4rem; color: var(--muted); flex-shrink: 0; }
+    .empty {
+      padding: 30px; border: 1px dashed var(--line); border-radius: var(--radius);
+      color: var(--muted); text-align: center;
+    }
+    footer { padding: 34px 0; color: var(--muted); border-top: 1px solid var(--line); }
+    .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-size: 0.92rem; }
+    [data-lang="es"] .en, [data-lang="en"] .es { display: none; }
+    @media (max-width: 620px) {
+      .proj { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .arrow { display: none; }
+    }
+  </style>
+</head>
+<body data-lang="en">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="/">Conuco Consulting</a>
+      <div class="lang" aria-label="Language selector">
+        <button type="button" class="active" data-set-lang="en">EN</button>
+        <button type="button" data-set-lang="es">ES</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow en">Project updates</div>
+        <div class="eyebrow es">Actualizaciones de proyecto</div>
+        <h1 class="en">Live updates.</h1>
+        <h1 class="es">Actualizaciones en vivo.</h1>
+        <p class="lead en">Current status, milestones, and next steps for active Conuco engagements. Each page updates as work progresses.</p>
+        <p class="lead es">Estado actual, hitos y próximos pasos de los proyectos activos de Conuco. Cada página se actualiza a medida que avanza el trabajo.</p>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="list">
+          <a class="proj" href="gogo-study/">
+            <div>
+              <span class="tag en">Active</span><span class="tag es">Activo</span>
+              <h3>GoGo Study</h3>
+              <p class="en">Go-to-market structure and growth systems.</p>
+              <p class="es">Estructura de go-to-market y sistemas de crecimiento.</p>
+            </div>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap foot">
+      <span>&copy; <span id="year"></span> Conuco Consulting</span>
+      <span>Madrid &middot; Montreal</span>
+    </div>
+  </footer>
+  <script>
+    const body = document.body;
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(lang) {
+      body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
+      try { localStorage.setItem('conuco_lang', lang); } catch (e) {}
+    }
+    buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+    let saved = 'en';
+    try { saved = localStorage.getItem('conuco_lang') || 'en'; } catch (e) {}
+    setLang(saved);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
