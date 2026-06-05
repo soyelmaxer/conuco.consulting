@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arnaldo · HQP Visa Tracker | Conuco</title>
+  <meta name="description" content="Live HQP visa application tracker prepared by Conuco Consulting." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#111111" />
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --ink: #111111;
+      --muted: #5f5a52;
+      --line: rgba(17, 17, 17, 0.14);
+      --card: #fffaf2;
+      --accent: #2f4a35;
+      --accent-soft: #dfe8d9;
+      --max: 920px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47, 74, 53, 0.12), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 243, 236, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { font-weight: 750; letter-spacing: -0.03em; font-size: 1.05rem; text-decoration: none; }
+    .back { color: var(--muted); font-size: 0.92rem; text-decoration: none; }
+    .back:hover { color: var(--ink); }
+    .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 2px; background: rgba(255,255,255,0.35); }
+    .lang button { border: 0; border-radius: 999px; padding: 7px 10px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: 0.85rem; }
+    .lang button.active { background: var(--ink); color: white; }
+    .navright { display: flex; align-items: center; gap: 14px; }
+    .hero { padding: 56px 0 20px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); font-weight: 750; font-size: 0.9rem; margin-bottom: 14px; }
+    .eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--accent); display: inline-block; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.05em; margin: 0 0 12px; }
+    .meta { color: var(--muted); font-size: 0.96rem; }
+    .pill { display: inline-block; font-size: 0.74rem; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; vertical-align: middle; margin-left: 6px; }
+    section { padding: 22px 0; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.04em; margin: 0 0 16px; }
+    .panel { background: rgba(255, 250, 242, 0.78); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 18px 50px rgba(17,17,17,0.05); padding: 26px; }
+    .panel p { margin: 0 0 12px; color: var(--ink); }
+    .panel p:last-child { margin-bottom: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .metric { padding: 22px; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255,255,255,0.5); }
+    .metric strong { display: block; font-size: 1.5rem; letter-spacing: -0.04em; }
+    .metric span { color: var(--muted); font-size: 0.92rem; }
+    .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .timeline li { display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border-radius: 16px; background: rgba(17,17,17,0.035); }
+    .dot { width: 16px; height: 16px; border-radius: 999px; margin-top: 4px; border: 3px solid var(--accent-soft); background: var(--bg); }
+    .dot.done { background: var(--accent); border-color: var(--accent); }
+    .dot.active { background: var(--accent); border-color: var(--accent-soft); box-shadow: 0 0 0 4px rgba(47,74,53,0.12); }
+    .timeline strong { display: block; }
+    .timeline span { color: var(--muted); font-size: 0.94rem; }
+    .status-label { font-size: 0.72rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    ul.clean { margin: 0; padding-left: 20px; }
+    ul.clean li { margin-bottom: 8px; color: var(--ink); }
+    ul.clean li:last-child { margin-bottom: 0; }
+    footer { padding: 40px 0; color: var(--muted); border-top: 1px solid var(--line); margin-top: 30px; }
+    .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-size: 0.92rem; }
+    [data-lang="es"] .en, [data-lang="en"] .es { display: none; }
+    @media (max-width: 620px) { .metrics { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-lang="en">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="/">Conuco Consulting</a>
+      <div class="navright">
+        <a class="back en" href="../">&larr; All projects</a>
+        <a class="back es" href="../">&larr; Proyectos</a>
+        <div class="lang" aria-label="Language selector">
+          <button type="button" class="active" data-set-lang="en">EN</button>
+          <button type="button" data-set-lang="es">ES</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow en">Visa tracker</div>
+        <div class="eyebrow es">Seguimiento de visado</div>
+        <h1>Arnaldo &middot; HQP Visa<span class="pill en">In progress</span><span class="pill es">En curso</span></h1>
+        <p class="meta en">Highly Qualified Professional visa (Spain) &middot; Last updated: <span class="upd"></span></p>
+        <p class="meta es">Visado de Profesional Altamente Cualificado (España) &middot; Última actualización: <span class="upd"></span></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="en">Current status</h2>
+        <h2 class="es">Estado actual</h2>
+        <div class="metrics">
+          <div class="metric">
+            <strong class="en">Step 2 of 5</strong><strong class="es">Paso 2 de 5</strong>
+            <span class="en">Application submitted</span><span class="es">Solicitud presentada</span>
+          </div>
+          <div class="metric">
+            <strong>&mdash;</strong>
+            <span class="en">Decision ETA to confirm</span><span class="es">Fecha de resolución por confirmar</span>
+          </div>
+          <div class="metric">
+            <strong class="en">On track</strong><strong class="es">En marcha</strong>
+            <span class="en">No blockers</span><span class="es">Sin bloqueos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="en">Application stages</h2>
+        <h2 class="es">Etapas del trámite</h2>
+        <div class="panel">
+          <ul class="timeline">
+            <li>
+              <span class="dot done"></span>
+              <div>
+                <span class="status-label en">Done</span><span class="status-label es">Completado</span>
+                <strong class="en">1 &middot; Documents prepared</strong>
+                <strong class="es">1 &middot; Documentación preparada</strong>
+                <span class="en">Contract, qualifications, and supporting documents gathered and reviewed.</span>
+                <span class="es">Contrato, titulación y documentos de apoyo reunidos y revisados.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dot active"></span>
+              <div>
+                <span class="status-label en">In progress</span><span class="status-label es">En curso</span>
+                <strong class="en">2 &middot; Application submitted</strong>
+                <strong class="es">2 &middot; Solicitud presentada</strong>
+                <span class="en">Filed with the authority. Awaiting acknowledgement and file number.</span>
+                <span class="es">Presentada ante la autoridad. A la espera de acuse y número de expediente.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dot"></span>
+              <div>
+                <span class="status-label en">Next</span><span class="status-label es">Siguiente</span>
+                <strong class="en">3 &middot; Under review</strong>
+                <strong class="es">3 &middot; En revisión</strong>
+                <span class="en">Authority assessment. Respond to any additional document requests.</span>
+                <span class="es">Evaluación de la autoridad. Responder a posibles requerimientos de documentación.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dot"></span>
+              <div>
+                <span class="status-label en">Later</span><span class="status-label es">Después</span>
+                <strong class="en">4 &middot; Decision</strong>
+                <strong class="es">4 &middot; Resolución</strong>
+                <span class="en">Approval notification and next-step instructions.</span>
+                <span class="es">Notificación de aprobación e instrucciones de siguiente paso.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dot"></span>
+              <div>
+                <span class="status-label en">Later</span><span class="status-label es">Después</span>
+                <strong class="en">5 &middot; Residence card</strong>
+                <strong class="es">5 &middot; Tarjeta de residencia</strong>
+                <span class="en">Fingerprinting appointment and card issuance.</span>
+                <span class="es">Cita de huellas y emisión de la tarjeta.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="en">Next steps</h2>
+        <h2 class="es">Próximos pasos</h2>
+        <div class="panel">
+          <ul class="clean">
+            <li class="en">Confirm the file number once the acknowledgement arrives.</li>
+            <li class="es">Confirmar el número de expediente cuando llegue el acuse.</li>
+            <li class="en">Keep originals ready in case of an additional document request.</li>
+            <li class="es">Tener los originales listos por si hay un requerimiento adicional.</li>
+            <li class="en">Track the decision window and book the card appointment early.</li>
+            <li class="es">Seguir el plazo de resolución y reservar la cita de tarjeta con tiempo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap foot">
+      <span>&copy; <span id="year"></span> Conuco Consulting</span>
+      <span>Madrid &middot; Montreal</span>
+    </div>
+  </footer>
+  <script>
+    const body = document.body;
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(lang) {
+      body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
+      try { localStorage.setItem('conuco_lang', lang); } catch (e) {}
+    }
+    buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+    let saved = 'en';
+    try { saved = localStorage.getItem('conuco_lang') || 'en'; } catch (e) {}
+    setLang(saved);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('.upd').forEach(function (el) { el.textContent = 'June 4, 2026'; });
+  </script>
+</body>
+</html>
