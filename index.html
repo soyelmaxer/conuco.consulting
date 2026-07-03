@@ -110,6 +110,70 @@
     .btn.secondary:hover { background: rgba(17,17,17,0.05); }
     .hero {
       padding: 88px 0 56px;
+      position: relative;
+    }
+    .hero-art {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      width: min(400px, 34vw);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    .brandmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .brandmark svg { flex-shrink: 0; }
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+    .divider-art {
+      display: block;
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto;
+      color: var(--accent);
+      opacity: 0.55;
+    }
+    .portrait {
+      width: 132px;
+      height: 132px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .portrait .monogram {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.04em;
+      color: var(--accent);
     }
     .eyebrow {
       display: inline-flex;
@@ -269,13 +333,16 @@
       .hero { padding-top: 58px; }
       .proof, .grid2x2, .grid3, .section-head, .about { grid-template-columns: 1fr; }
       .proof { margin-top: 32px; }
+      .hero-art { display: none; }
     }
   </style>
 </head>
 <body data-lang="en">
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="Conuco Consulting home">Conuco Consulting</a>
+      <a class="brand brandmark" href="#top" aria-label="Conuco Consulting home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="14" width="20" height="8" rx="2" stroke="#2f4a35" stroke-width="1.8"/><path d="M12 14V8m0 0c0-3 2.4-4.4 4.6-4.4C16.6 6.6 14.6 8 12 8Zm0 0c0-3-2.4-4.4-4.6-4.4C7.4 6.6 9.4 8 12 8Z" stroke="#2f4a35" stroke-width="1.8" stroke-linecap="round"/><path d="M6 18h2m3 0h2m3 0h2" stroke="#2f4a35" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Conuco Consulting</a>
       <nav class="navlinks" aria-label="Main navigation">
         <a class="en" href="#services">Services</a><a class="es" href="#services">Servicios</a>
         <a class="en" href="#approach">Approach</a><a class="es" href="#approach">Método</a>
@@ -293,6 +360,28 @@
   </header>
   <main id="top">
     <section class="hero">
+      <svg class="hero-art" viewBox="0 0 400 420" fill="none" aria-hidden="true">
+        <g stroke="#2f4a35" stroke-width="1.4" opacity="0.32">
+          <rect x="20" y="230" width="110" height="80" rx="10"/>
+          <rect x="145" y="230" width="110" height="80" rx="10"/>
+          <rect x="270" y="230" width="110" height="80" rx="10"/>
+          <rect x="20" y="325" width="110" height="80" rx="10"/>
+          <rect x="145" y="325" width="110" height="80" rx="10"/>
+          <rect x="270" y="325" width="110" height="80" rx="10"/>
+        </g>
+        <g stroke="#2f4a35" stroke-width="2" stroke-linecap="round">
+          <path d="M75 230v-38m0 0c0-16 12-24 24-24 0 16-11 24-24 24Zm0 0c0-16-12-24-24-24 0 16 11 24 24 24Z" opacity="0.85"/>
+          <path d="M200 230v-64m0 0c0-20 15-30 30-30 0 20-14 30-30 30Zm0 0c0-20-15-30-30-30 0 20 14 30 30 30Z"/>
+          <path d="M325 230v-96m0 0c0-24 18-36 36-36 0 24-17 36-36 36Zm0 0c0-24-18-36-36-36 0 24 17 36 36 36Z" opacity="0.7"/>
+          <path d="M75 325v-14m0 0c0-9 7-13 13-13 0 9-6 13-13 13Z" opacity="0.5"/>
+          <path d="M200 325v-22m0 0c0-11 8-16 16-16 0 11-7 16-16 16Zm0 0c0-11-8-16-16-16 0 11 7 16 16 16Z" opacity="0.6"/>
+          <path d="M325 325v-8" opacity="0.4"/>
+        </g>
+        <g stroke="#2f4a35" stroke-width="1.2" stroke-dasharray="2 6" opacity="0.4">
+          <path d="M40 262h70M165 262h70M290 262h70M40 286h70M165 286h70M290 286h70"/>
+          <path d="M40 357h70M165 357h70M290 357h70M40 381h70M165 381h70M290 381h70"/>
+        </g>
+      </svg>
       <div class="wrap">
         <div class="eyebrow en">People + Operations for scale</div>
         <div class="eyebrow es">Personas + Operaciones para escalar</div>
@@ -322,21 +411,25 @@
         </div>
         <div class="grid2x2">
           <article class="card">
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg></span>
             <h3 class="en">Operational Structure</h3><h3 class="es">Estructura Operativa</h3>
             <p class="en">Operating model, decision rights, rituals, documentation, and accountability that scale.</p>
             <p class="es">Modelo operativo, decisiones, rituales, documentación y accountability que escalan.</p>
           </article>
           <article class="card">
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.6-3.5 2.8-5.5 5.5-5.5S13.9 16.5 14.5 20"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16 14.6c2.5.2 4 1.9 4.5 4.4"/></svg></span>
             <h3 class="en">People & HR Strategy</h3><h3 class="es">Estrategia de Personas</h3>
             <p class="en">Org design, performance, compensation logic, hiring, onboarding, and compliance frameworks.</p>
             <p class="es">Diseño organizacional, desempeño, compensación, selección, onboarding y compliance.</p>
           </article>
           <article class="card">
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h6l3 5 3-5h6"/><path d="M3 17h6l3-5 3 5h6"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
             <h3 class="en">Process Optimization</h3><h3 class="es">Optimización de Procesos</h3>
             <p class="en">Remove friction, improve execution speed, and build systems teams actually follow.</p>
             <p class="es">Elimina fricción, acelera ejecución y construye sistemas que el equipo realmente usa.</p>
           </article>
           <article class="card">
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10m5.5 10V4m5.5 16v-8m5 8V7"/><path d="M4 6.5c4-.5 7 .5 9.5 3S19 12 20 11.5" opacity="0.6"/></svg></span>
             <h3 class="en">Growth Systems</h3><h3 class="es">Sistemas de Crecimiento</h3>
             <p class="en">Landing pages, creative direction, paid acquisition, funnel tracking, and ROI reporting. Measurable path from attention to revenue.</p>
             <p class="es">Landing pages, dirección creativa, adquisición paga, tracking de funnel y reporting de ROI. Camino medible desde la atención al ingreso.</p>
@@ -390,6 +483,10 @@
     <section id="about">
       <div class="wrap about">
         <div class="panel">
+          <div class="portrait">
+            <span class="monogram" aria-hidden="true">MS</span>
+            <img src="assets/max.jpg" alt="Max Alejandro Sanchez Luckert" onerror="this.style.display='none'" onload="this.previousElementSibling.style.display='none'" />
+          </div>
           <h2 class="en">About</h2><h2 class="es">Sobre mí</h2>
           <p class="en">I'm Max Alejandro Sanchez Luckert. People & Operations leader with 15+ years across digital media, advertising, and ag-tech. I've built and restructured teams, led compliance across regions, and supported executives through high-change environments. I'm a proud generalist—systems thinking is my default. Now I work with companies ready to build operating systems that actually work, and I use AI as part of my operating layer to move faster on diagnosis, design, and coordination.</p>
           <p class="es">Soy Max Alejandro Sanchez Luckert. Líder en Personas y Operaciones con 15+ años en medios digitales, publicidad y ag-tech. He construido y reestructurado equipos, liderado compliance multi-región y apoyado a ejecutivos en entornos de alto cambio. Soy un generalista orgulloso—el pensamiento sistémico es mi defecto. Ahora trabajo con empresas listas para construir sistemas operativos que realmente funcionan, y uso IA como parte de mi capa operativa para avanzar más rápido en diagnóstico, diseño y coordinación.</p>
@@ -417,6 +514,7 @@
   <footer>
     <div class="wrap foot">
       <span>© <span id="year"></span> Conuco Consulting</span>
+      <span><a class="en" href="/clients/">Client login</a><a class="es" href="/clients/">Acceso clientes</a></span>
       <span>Madrid · Montreal</span>
     </div>
   </footer>
