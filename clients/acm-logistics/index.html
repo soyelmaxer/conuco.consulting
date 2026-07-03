@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>ACM Logistics | Client Dashboard · Conuco Consulting</title>
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --ink: #111111;
+      --muted: #5f5a52;
+      --line: rgba(17, 17, 17, 0.14);
+      --card: #fffaf2;
+      --accent: #2f4a35;
+      --accent-soft: #dfe8d9;
+      --pos: #2f4a35;
+      --neg: #a3402e;
+      --max: 1120px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, rgba(47, 74, 53, 0.10), transparent 30rem), var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 243, 236, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .brand { font-weight: 750; letter-spacing: -0.03em; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; }
+    .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; background: rgba(255,255,255,0.35); }
+    .lang button { border: 0; border-radius: 999px; padding: 6px 10px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: 0.85rem; }
+    .lang button.active { background: var(--ink); color: white; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 44px; padding: 0 18px; border-radius: 999px;
+      background: var(--ink); color: white; font-weight: 700; font-size: 0.95rem;
+      border: 1px solid var(--ink); cursor: pointer; font-family: inherit;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: #2b2b2b; }
+    .btn.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    [data-lang="es"] .en, [data-lang="en"] .es { display: none; }
+
+    /* Gate */
+    .gate { max-width: 420px; margin: 12vh auto 0; padding: 34px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 18px 50px rgba(17,17,17,0.06); text-align: center; }
+    .gate h1 { font-size: 1.5rem; letter-spacing: -0.04em; margin: 0 0 8px; }
+    .gate p { color: var(--muted); margin: 0 0 22px; font-size: 0.98rem; }
+    .gate input {
+      width: 100%; min-height: 48px; padding: 0 16px; margin-bottom: 12px;
+      border-radius: 14px; border: 1px solid var(--line); background: white;
+      font: inherit; text-align: center; letter-spacing: 0.06em;
+    }
+    .gate input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .gate .error { color: var(--neg); font-size: 0.9rem; min-height: 1.4em; margin: 8px 0 0; }
+
+    /* Dashboard */
+    #dash { display: none; padding: 36px 0 70px; }
+    .dash-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+    .dash-head h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -0.05em; margin: 0; line-height: 1.02; }
+    .dash-head .sub { color: var(--muted); margin-top: 6px; }
+    .ribbon {
+      display: inline-block; margin: 14px 0 4px; padding: 6px 14px; border-radius: 999px;
+      background: #f3e0c0; color: #7a5b1e; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;
+    }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0 8px; }
+    .kpi { padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+    .kpi .label { color: var(--muted); font-size: 0.88rem; margin-bottom: 6px; }
+    .kpi .value { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.04em; }
+    .kpi .delta { font-size: 0.85rem; font-weight: 700; margin-top: 4px; }
+    .delta.up { color: var(--pos); }
+    .delta.down { color: var(--neg); }
+    section.block { margin-top: 38px; }
+    section.block h2 { font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.045em; margin: 0 0 4px; }
+    section.block .blurb { color: var(--muted); margin: 0 0 18px; font-size: 0.98rem; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; overflow-x: auto; }
+    .chart-panel { padding: 24px 24px 10px; margin-bottom: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.93rem; min-width: 640px; }
+    th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 180px; }
+    thead th { color: var(--muted); font-weight: 600; font-size: 0.85rem; border-bottom: 2px solid var(--ink); }
+    tr.subtotal td { font-weight: 750; background: rgba(47,74,53,0.05); }
+    tr.total td { font-weight: 800; border-top: 2px solid var(--ink); border-bottom: none; font-size: 1rem; }
+    td.neg { color: var(--neg); }
+    .notes { margin-top: 16px; color: var(--muted); font-size: 0.9rem; }
+    .notes li { margin-bottom: 4px; }
+    .actions-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    footer { padding: 30px 0; color: var(--muted); border-top: 1px solid var(--line); margin-top: 50px; font-size: 0.92rem; }
+    .foot { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .kpis { grid-template-columns: 1fr; } }
+
+    @media print {
+      header, .actions-row, .lang, footer .noprint { display: none !important; }
+      body { background: white; }
+      .panel, .kpi { box-shadow: none; break-inside: avoid; }
+      #dash { display: block !important; padding-top: 0; }
+      table { min-width: 0; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body data-lang="en">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="/">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="14" width="20" height="8" rx="2" stroke="#2f4a35" stroke-width="1.8"/><path d="M12 14V8m0 0c0-3 2.4-4.4 4.6-4.4C16.6 6.6 14.6 8 12 8Zm0 0c0-3-2.4-4.4-4.6-4.4C7.4 6.6 9.4 8 12 8Z" stroke="#2f4a35" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Conuco Consulting
+      </a>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div class="lang" aria-label="Language selector">
+          <button type="button" class="active" data-set-lang="en">EN</button>
+          <button type="button" data-set-lang="es">ES</button>
+        </div>
+        <button type="button" class="btn secondary" id="logout" style="display:none;">
+          <span class="en">Log out</span><span class="es">Salir</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="gate" id="gate">
+      <h1 class="en">Client access</h1><h1 class="es">Acceso de cliente</h1>
+      <p class="en">Enter your access code to open your dashboard.</p>
+      <p class="es">Introduce tu código de acceso para abrir tu panel.</p>
+      <form id="gateForm">
+        <input type="password" id="passcode" autocomplete="off" placeholder="••••••••" aria-label="Access code" />
+        <button type="submit" class="btn" style="width:100%;">
+          <span class="en">Open dashboard</span><span class="es">Abrir panel</span>
+        </button>
+        <p class="error" id="gateError"></p>
+      </form>
+    </div>
+
+    <div id="dash">
+      <div id="report">
+        <div class="dash-head">
+          <div>
+            <h1 id="clientName"></h1>
+            <div class="sub" id="periodLabel"></div>
+            <span class="ribbon" id="placeholderRibbon" style="display:none;">
+              <span class="en">PLACEHOLDER DATA — pending final integration</span>
+              <span class="es">DATOS PROVISIONALES — pendiente integración final</span>
+            </span>
+          </div>
+          <div class="actions-row">
+            <button type="button" class="btn" id="pdfBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+              <span class="en">Download PDF report</span><span class="es">Descargar informe PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="kpis" id="kpis"></div>
+
+        <section class="block">
+          <h2 class="en">Cash flow forecast</h2><h2 class="es">Previsión de flujo de caja</h2>
+          <p class="blurb en">Monthly inflows, outflows, and projected closing balance.</p>
+          <p class="blurb es">Entradas, salidas y saldo de cierre proyectado por mes.</p>
+          <div class="panel chart-panel" id="cashChart"></div>
+          <div class="panel"><table id="cashTable"></table></div>
+        </section>
+
+        <section class="block">
+          <h2 class="en">Profit &amp; Loss</h2><h2 class="es">Cuenta de resultados</h2>
+          <p class="blurb" id="pnlPeriod"></p>
+          <div class="panel"><table id="pnlTable"></table></div>
+        </section>
+
+        <section class="block">
+          <h2 class="en">Notes</h2><h2 class="es">Notas</h2>
+          <div class="panel"><ul class="notes" id="notesList"></ul></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="year"></span> Conuco Consulting · <span class="en">Confidential — prepared for the client named above.</span><span class="es">Confidencial — preparado para el cliente indicado.</span></span>
+      <span class="noprint">Madrid · Montreal</span>
+    </div>
+  </footer>
+
+  <script>
+    // ====== Encrypted payload (AES-256-GCM, key = PBKDF2-SHA256(passcode, salt, 310000 iters)) ======
+    const BLOB = {
+      salt: "DAtZhGldhs/W09PO/zWo2Q==",
+      iv: "fMS4XNYDenKhfsLu",
+      ct: "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"
+    };
+    const PBKDF2_ITERS = 310000;
+
+    const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+    async function decrypt(passcode) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(passcode), "PBKDF2", false, ["deriveKey"]);
+      const key = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: b64(BLOB.salt), iterations: PBKDF2_ITERS, hash: "SHA-256" },
+        keyMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
+      );
+      const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(BLOB.iv) }, key, b64(BLOB.ct));
+      return JSON.parse(new TextDecoder().decode(pt));
+    }
+
+    // ====== i18n / formatting ======
+    const body = document.body;
+    let DATA = null;
+    const langButtons = document.querySelectorAll("[data-set-lang]");
+    function setLang(lang) {
+      body.setAttribute("data-lang", lang);
+      document.documentElement.lang = lang;
+      langButtons.forEach(b => b.classList.toggle("active", b.dataset.setLang === lang));
+      localStorage.setItem("conuco_lang", lang);
+      if (DATA) render(DATA);
+    }
+    langButtons.forEach(b => b.addEventListener("click", () => setLang(b.dataset.setLang)));
+
+    const L = () => body.getAttribute("data-lang");
+    const fmt = v => new Intl.NumberFormat(L() === "es" ? "es-ES" : "en-GB",
+      { style: "currency", currency: (DATA && DATA.currency) || "EUR", maximumFractionDigits: 0 }).format(v);
+    const cell = v => `<td class="${v < 0 ? "neg" : ""}">${fmt(v)}</td>`;
+
+    // ====== render ======
+    function render(d) {
+      document.getElementById("clientName").textContent = d.client;
+      document.getElementById("periodLabel").textContent = d.period_label[L()];
+      document.getElementById("placeholderRibbon").style.display = d.placeholder ? "inline-block" : "none";
+
+      // KPIs
+      document.getElementById("kpis").innerHTML = d.kpis.map(k => {
+        const val = k.text != null ? k.text : fmt(k.value);
+        const delta = k.delta == null ? "" :
+          `<div class="delta ${k.delta >= 0 ? "up" : "down"}">${k.delta >= 0 ? "▲" : "▼"} ${(Math.abs(k.delta) * 100).toFixed(1)}${L()==="es"?" % vs mes ant.":"% MoM"}</div>`;
+        return `<div class="kpi"><div class="label">${k[L()]}</div><div class="value">${val}</div>${delta}</div>`;
+      }).join("");
+
+      // Cash flow computations
+      const cf = d.cashflow, n = cf.months.length;
+      const totIn = Array(n).fill(0), totOut = Array(n).fill(0);
+      cf.rows.forEach(r => r.values.forEach((v, i) => { if (r.type === "in") totIn[i] += v; else totOut[i] += v; }));
+      const net = totIn.map((v, i) => v + totOut[i]);
+      const closing = []; let bal = cf.opening;
+      net.forEach(v => { bal += v; closing.push(bal); });
+
+      // Cash table
+      const openLbl = L()==="es"?"Saldo inicial":"Opening balance";
+      const inLbl = L()==="es"?"Total entradas":"Total inflows";
+      const outLbl = L()==="es"?"Total salidas":"Total outflows";
+      const netLbl = L()==="es"?"Flujo neto":"Net cash flow";
+      const closeLbl = L()==="es"?"Saldo de cierre":"Closing balance";
+      let html = `<thead><tr><th></th>${cf.months.map(m => `<th>${m}</th>`).join("")}</tr></thead><tbody>`;
+      html += `<tr class="subtotal"><td>${openLbl}</td>${closing.map((c, i) => cell(i === 0 ? cf.opening : closing[i-1])).join("")}</tr>`;
+      cf.rows.forEach(r => { html += `<tr><td>${r[L()]}</td>${r.values.map(v => cell(v)).join("")}</tr>`; });
+      html += `<tr class="subtotal"><td>${inLbl}</td>${totIn.map(v => cell(v)).join("")}</tr>`;
+      html += `<tr class="subtotal"><td>${outLbl}</td>${totOut.map(v => cell(v)).join("")}</tr>`;
+      html += `<tr class="subtotal"><td>${netLbl}</td>${net.map(v => cell(v)).join("")}</tr>`;
+      html += `<tr class="total"><td>${closeLbl}</td>${closing.map(v => cell(v)).join("")}</tr></tbody>`;
+      document.getElementById("cashTable").innerHTML = html;
+
+      // Chart: net bars + closing line
+      drawChart(cf.months, net, closing);
+
+      // P&L
+      document.getElementById("pnlPeriod").textContent = d.pnl.period[L()];
+      const mLbl = L()==="es"?"Mes":"Month", yLbl = "YTD";
+      let ph = `<thead><tr><th></th><th>${mLbl}</th><th>${yLbl}</th></tr></thead><tbody>`;
+      d.pnl.rows.forEach(r => {
+        const cls = r.style === "subtotal" ? "subtotal" : r.style === "total" ? "total" : "";
+        ph += `<tr class="${cls}"><td>${r[L()]}</td>${cell(r.month)}${cell(r.ytd)}</tr>`;
+      });
+      ph += "</tbody>";
+      document.getElementById("pnlTable").innerHTML = ph;
+
+      // Notes
+      document.getElementById("notesList").innerHTML = d.notes[L()].map(x => `<li>${x}</li>`).join("");
+    }
+
+    function drawChart(months, net, closing) {
+      const W = 900, H = 260, padL = 70, padR = 20, padT = 16, padB = 34;
+      const all = [...net, ...closing, 0];
+      const min = Math.min(...all), max = Math.max(...all);
+      const span = (max - min) || 1;
+      const y = v => padT + (max - v) / span * (H - padT - padB);
+      const bw = (W - padL - padR) / months.length;
+      let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;" role="img" aria-label="Cash flow chart">`;
+      // gridlines
+      for (let g = 0; g <= 4; g++) {
+        const gv = min + span * g / 4, gy = y(gv);
+        s += `<line x1="${padL}" x2="${W - padR}" y1="${gy}" y2="${gy}" stroke="rgba(17,17,17,0.08)"/>`;
+        s += `<text x="${padL - 8}" y="${gy + 4}" text-anchor="end" font-size="11" fill="#5f5a52">${Math.round(gv / 1000)}k</text>`;
+      }
+      // zero line
+      s += `<line x1="${padL}" x2="${W - padR}" y1="${y(0)}" y2="${y(0)}" stroke="rgba(17,17,17,0.3)" stroke-width="1"/>`;
+      // net bars
+      months.forEach((m, i) => {
+        const x = padL + i * bw + bw * 0.22, w = bw * 0.32;
+        const v = net[i], y0 = y(Math.max(0, v)), h = Math.abs(y(v) - y(0));
+        s += `<rect x="${x}" y="${y0}" width="${w}" height="${Math.max(h,1)}" rx="4" fill="${v >= 0 ? "#2f4a35" : "#a3402e"}" opacity="0.55"/>`;
+        s += `<text x="${padL + i * bw + bw / 2}" y="${H - 12}" text-anchor="middle" font-size="12" fill="#5f5a52">${m}</text>`;
+      });
+      // closing line
+      const pts = closing.map((v, i) => `${padL + i * bw + bw / 2},${y(v)}`).join(" ");
+      s += `<polyline points="${pts}" fill="none" stroke="#2f4a35" stroke-width="2.5" stroke-linejoin="round"/>`;
+      closing.forEach((v, i) => {
+        s += `<circle cx="${padL + i * bw + bw / 2}" cy="${y(v)}" r="4" fill="#2f4a35"/>`;
+      });
+      const netL = L()==="es"?"Flujo neto (barras)":"Net flow (bars)";
+      const closeL = L()==="es"?"Saldo de cierre (línea)":"Closing balance (line)";
+      s += `<text x="${W - padR}" y="${padT}" text-anchor="end" font-size="11" fill="#5f5a52">${netL} · ${closeL}</text>`;
+      s += "</svg>";
+      document.getElementById("cashChart").innerHTML = s;
+    }
+
+    // ====== PDF ======
+    document.getElementById("pdfBtn").addEventListener("click", () => {
+      const el = document.getElementById("report");
+      const name = `${(DATA && DATA.client || "report").replace(/\s+/g, "-")}_${(DATA && DATA.updated) || ""}.pdf`;
+      if (window.html2pdf) {
+        window.html2pdf().set({
+          margin: [10, 8],
+          filename: name,
+          image: { type: "jpeg", quality: 0.95 },
+          html2canvas: { scale: 2, backgroundColor: "#ffffff" },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: ["avoid-all", "css"] }
+        }).from(el).save();
+      } else {
+        window.print();
+      }
+    });
+
+    // ====== gate flow ======
+    const gate = document.getElementById("gate");
+    const dash = document.getElementById("dash");
+    const gateError = document.getElementById("gateError");
+
+    async function tryOpen(passcode, silent) {
+      try {
+        DATA = await decrypt(passcode);
+        sessionStorage.setItem("conuco_pc", passcode);
+        gate.style.display = "none";
+        dash.style.display = "block";
+        document.getElementById("logout").style.display = "inline-flex";
+        render(DATA);
+        return true;
+      } catch (e) {
+        if (!silent) gateError.textContent = L() === "es" ? "Código incorrecto. Inténtalo de nuevo." : "Incorrect code. Please try again.";
+        sessionStorage.removeItem("conuco_pc");
+        return false;
+      }
+    }
+
+    document.getElementById("gateForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const pc = document.getElementById("passcode").value.trim();
+      if (pc) tryOpen(pc, false);
+    });
+
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("conuco_pc");
+      location.reload();
+    });
+
+    setLang(localStorage.getItem("conuco_lang") || "en");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const saved = sessionStorage.getItem("conuco_pc");
+    if (saved) tryOpen(saved, true);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</body>
+</html>
