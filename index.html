@@ -22,6 +22,7 @@
     "@type": "ProfessionalService",
     "name": "Conuco Consulting",
     "url": "https://conuco.consulting/",
+    "email": "max@conuco.consulting",
     "description": "Consulting for owners of growing companies: how the business runs, the people side, and the numbers, with one accountable senior operator.",
     "founder": { "@type": "Person", "name": "Max Alejandro Sanchez Luckert" },
     "areaServed": ["Europe", "North America", "Latin America"],
@@ -432,55 +433,6 @@
       .plant-anim .leaf { scale: 1; animation: none; }
       .plant-anim .plant { animation: none; }
     }
-    /* Lead modal */
-    .modal-back {
-      position: fixed;
-      inset: 0;
-      background: rgba(22, 33, 26, 0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-      padding: 16px;
-    }
-    .modal-back.open { display: flex; }
-    .modal {
-      background: var(--bg);
-      border-radius: 24px;
-      max-width: 460px;
-      width: 100%;
-      padding: 28px;
-      position: relative;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-    }
-    .modal h3 { margin: 0 34px 6px 0; font-size: 1.4rem; letter-spacing: -0.04em; }
-    .modal .sub { color: var(--muted); margin: 0 0 14px; font-size: 0.98rem; }
-    .modal label { display: block; font-weight: 650; font-size: 0.9rem; margin: 12px 0 6px; }
-    .modal input, .modal textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 11px 12px;
-      font: inherit;
-      background: white;
-      box-sizing: border-box;
-    }
-    .modal input:focus, .modal textarea:focus { outline: 2px solid var(--leaf); border-color: transparent; }
-    .modal textarea { min-height: 84px; resize: vertical; }
-    .modal .btn { width: 100%; margin-top: 18px; }
-    .modal .note { color: var(--muted); font-size: 0.8rem; text-align: center; margin: 10px 0 0; }
-    .modal .x {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      border: 0;
-      background: transparent;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--muted);
-      line-height: 1;
-      padding: 6px;
-    }
     [data-lang="en"] .es, [data-lang="en"] .fr,
     [data-lang="es"] .en, [data-lang="es"] .fr,
     [data-lang="fr"] .en, [data-lang="fr"] .es { display: none; }
@@ -517,9 +469,9 @@
           <button type="button" data-set-lang="es">ES</button>
           <button type="button" data-set-lang="fr">FR</button>
         </div>
-        <a class="btn en" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Let's talk</a>
-        <a class="btn es" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Hablemos</a>
-        <a class="btn fr" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Parlons-en</a>
+        <a class="btn en" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Let's talk</a>
+        <a class="btn es" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Hablemos</a>
+        <a class="btn fr" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Parlons-en</a>
       </div>
     </div>
   </header>
@@ -553,9 +505,9 @@
         <p class="lead es">Ayudo a dueños de empresas en crecimiento a ordenar cómo funciona el negocio: quién hace qué, cómo se toman las decisiones y qué números mirar. Para que la empresa deje de depender de ti para todo.</p>
         <p class="lead fr">J'aide les propriétaires d'entreprises en croissance à remettre de l'ordre dans le fonctionnement du business : qui fait quoi, comment les décisions se prennent et quels chiffres surveiller. Pour que l'entreprise arrête de dépendre de vous pour tout.</p>
         <div class="actions">
-          <a class="btn en" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Book a call</a>
-          <a class="btn es" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Agenda una llamada</a>
-          <a class="btn fr" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Réservez un appel</a>
+          <a class="btn en" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Book a call</a>
+          <a class="btn es" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Agenda una llamada</a>
+          <a class="btn fr" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Réservez un appel</a>
           <a class="btn secondary en" href="#diagnostic">How it works</a>
           <a class="btn secondary es" href="#diagnostic">Cómo funciona</a>
           <a class="btn secondary fr" href="#diagnostic">Comment ça marche</a>
@@ -776,39 +728,17 @@
           <p class="en">Book a call. Thirty minutes, no sales pitch. If I can't help you, I'll tell you.</p>
           <p class="es">Agenda una llamada. Treinta minutos, sin discurso de venta. Si no puedo ayudarte, te lo digo.</p>
           <p class="fr">Réservez un appel. Trente minutes, sans pitch de vente. Si je ne peux pas vous aider, je vous le dis.</p>
-          <a class="btn en" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Let's talk</a>
-          <a class="btn es" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Hablemos</a>
-          <a class="btn fr" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Parlons-en</a>
+          <a class="btn en" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Let's talk</a>
+          <a class="btn es" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Hablemos</a>
+          <a class="btn fr" href="https://cal.com/conuco/intro" target="_blank" rel="noreferrer">Parlons-en</a>
         </div>
       </div>
     </section>
   </main>
-  <div class="modal-back" id="leadModal" role="dialog" aria-modal="true">
-    <div class="modal">
-      <button type="button" class="x" id="leadClose" aria-label="Close">×</button>
-      <h3 class="en">Before you pick a time</h3>
-      <h3 class="es">Antes de elegir hora</h3>
-      <h3 class="fr">Avant de choisir un créneau</h3>
-      <p class="sub en">Thirty seconds. It helps me prepare, so the call is about you, not about context.</p>
-      <p class="sub es">Treinta segundos. Me ayuda a preparar la llamada para hablar de ti, no de contexto.</p>
-      <p class="sub fr">Trente secondes. Ça m'aide à préparer l'appel pour parler de vous, pas du contexte.</p>
-      <form id="leadForm">
-        <label for="leadEmail"><span class="en">Your email</span><span class="es">Tu correo</span><span class="fr">Votre e-mail</span></label>
-        <input id="leadEmail" type="email" required autocomplete="email" />
-        <label for="leadSubject"><span class="en">What's this about?</span><span class="es">¿De qué se trata?</span><span class="fr">C'est à quel sujet ?</span></label>
-        <input id="leadSubject" type="text" required maxlength="120" />
-        <label for="leadQuestion"><span class="en">What do you want to solve?</span><span class="es">¿Qué quieres resolver?</span><span class="fr">Que voulez-vous régler ?</span></label>
-        <textarea id="leadQuestion" required maxlength="1000"></textarea>
-        <button type="submit" class="btn"><span class="en">Continue to the calendar</span><span class="es">Continuar al calendario</span><span class="fr">Continuer vers le calendrier</span></button>
-        <p class="note en">I only use this to prepare our call.</p>
-        <p class="note es">Solo lo uso para preparar nuestra llamada.</p>
-        <p class="note fr">Je l'utilise seulement pour préparer notre appel.</p>
-      </form>
-    </div>
-  </div>
   <footer>
     <div class="wrap foot">
       <span>© <span id="year"></span> Conuco Consulting</span>
+      <span><a href="mailto:max@conuco.consulting">max@conuco.consulting</a></span>
       <span><a class="en" href="/clients/">Client login</a><a class="es" href="/clients/">Acceso clientes</a><a class="fr" href="/clients/">Accès clients</a></span>
       <span>Madrid · Montreal</span>
     </div>
@@ -827,40 +757,6 @@
     buttons.forEach(button => button.addEventListener('click', () => setLang(button.dataset.setLang)));
     setLang(localStorage.getItem('conuco_lang') || 'en');
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Lead capture before booking
-    const CAL_URL = 'https://calendar.app.google/1FhcAsmToNHmuXbZ8';
-    const FORM_URL = 'https://docs.google.com/forms/d/1hgGDU3FC8geuQl-ngKW7CyTdn5JrAbP8I6JBTWv8Jfw/formResponse';
-    const modal = document.getElementById('leadModal');
-    document.querySelectorAll('a.btn[href^="https://calendar"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        modal.classList.add('open');
-        const emailField = document.getElementById('leadEmail');
-        setTimeout(() => emailField.focus(), 50);
-      });
-    });
-    function closeModal() { modal.classList.remove('open'); }
-    document.getElementById('leadClose').addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    document.getElementById('leadForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const params = new URLSearchParams();
-      params.append('entry.1788660215', document.getElementById('leadEmail').value.trim());
-      params.append('entry.2138020841', document.getElementById('leadSubject').value.trim());
-      params.append('entry.315329111', document.getElementById('leadQuestion').value.trim());
-      params.append('entry.222121114', body.getAttribute('data-lang'));
-      fetch(FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
-      }).catch(() => {});
-      window.open(CAL_URL, '_blank', 'noopener');
-      closeModal();
-      e.target.reset();
-    });
   </script>
 </body>
 </html>
