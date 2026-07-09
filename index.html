@@ -3,22 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conuco Consulting | People + Operations for Scale</title>
-  <meta name="description" content="Conuco Consulting supports growing companies with people systems, operational structure, financial visibility, and execution cadence across Europe and North America." />
-  <meta property="og:title" content="Conuco Consulting | Structure for Growth" />
-  <meta property="og:description" content="People systems, process clarity, and performance cadence for growing companies." />
+  <title>Conuco Consulting | Structure for growing companies</title>
+  <meta name="description" content="Conuco Consulting helps owners of growing companies fix how the business runs: who does what, how decisions get made, and which numbers to watch. Europe and North America." />
+  <meta property="og:title" content="Conuco Consulting | Your business grew. Your structure didn't." />
+  <meta property="og:description" content="One senior operator who diagnoses what's broken, fixes it, and brings trusted specialists when the job needs them." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://conuco.consulting/" />
-  <meta name="theme-color" content="#111111" />
+  <meta property="og:image" content="https://conuco.consulting/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://conuco.consulting/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect width='24' height='24' rx='5' fill='%2322382a'/%3E%3Cpath d='M12 19v-7m0 0c0-3.2 2.6-4.8 5-4.8 0 3.2-2.2 4.8-5 4.8Zm0 0c0-3.2-2.6-4.8-5-4.8 0 3.2 2.2 4.8 5 4.8Z' stroke='%23a8c9ad' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#22382a" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Conuco Consulting",
+    "url": "https://conuco.consulting/",
+    "description": "Consulting for owners of growing companies: how the business runs, the people side, and the numbers, with one accountable senior operator.",
+    "founder": { "@type": "Person", "name": "Max Alejandro Sanchez Luckert" },
+    "areaServed": ["Europe", "North America", "Latin America"],
+    "availableLanguage": ["en", "es", "fr"]
+  }
+  </script>
   <style>
     :root {
-      --bg: #f7f3ec;
-      --ink: #111111;
-      --muted: #5f5a52;
-      --line: rgba(17, 17, 17, 0.14);
-      --card: #fffaf2;
+      --bg: #f6f4ec;
+      --ink: #16211a;
+      --muted: #56604f;
+      --line: rgba(22, 33, 26, 0.14);
+      --card: #fdfbf4;
       --accent: #2f4a35;
-      --accent-soft: #dfe8d9;
+      --leaf: #5f8f63;
+      --accent-soft: #dbe8d4;
+      --deep: #22382a;
       --max: 1120px;
       --radius: 22px;
     }
@@ -28,7 +48,8 @@
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(47, 74, 53, 0.12), transparent 32rem),
+        radial-gradient(circle at top left, rgba(95, 143, 99, 0.16), transparent 34rem),
+        radial-gradient(circle at 90% 20%, rgba(95, 143, 99, 0.08), transparent 26rem),
         var(--bg);
       color: var(--ink);
       line-height: 1.5;
@@ -43,7 +64,7 @@
       top: 0;
       z-index: 10;
       backdrop-filter: blur(16px);
-      background: rgba(247, 243, 236, 0.86);
+      background: rgba(246, 244, 236, 0.86);
       border-bottom: 1px solid var(--line);
     }
     .nav {
@@ -85,7 +106,7 @@
       font-size: 0.85rem;
     }
     .lang button.active {
-      background: var(--ink);
+      background: var(--accent);
       color: white;
     }
     .btn {
@@ -95,29 +116,28 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
-      background: var(--ink);
+      background: var(--accent);
       color: white;
       font-weight: 700;
-      border: 1px solid var(--ink);
+      border: 1px solid var(--accent);
       transition: transform 160ms ease, background 160ms ease;
     }
-    .btn:hover { transform: translateY(-1px); background: #2b2b2b; }
+    .btn:hover { transform: translateY(-1px); background: var(--deep); }
     .btn.secondary {
       background: transparent;
       color: var(--ink);
       border-color: var(--line);
     }
-    .btn.secondary:hover { background: rgba(17,17,17,0.05); }
+    .btn.secondary:hover { background: rgba(47,74,53,0.08); }
     .hero {
       padding: 88px 0 56px;
       position: relative;
     }
-    .hero-art {
+    .plant-art {
       position: absolute;
-      right: 0;
-      top: 40px;
-      width: min(400px, 34vw);
-      opacity: 0.9;
+      right: 24px;
+      top: 30px;
+      width: min(340px, 30vw);
       pointer-events: none;
     }
     .brandmark {
@@ -137,14 +157,178 @@
       margin-bottom: 14px;
       color: var(--accent);
     }
-    .divider-art {
-      display: block;
-      width: 100%;
-      max-width: 220px;
-      margin: 0 auto;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       color: var(--accent);
-      opacity: 0.55;
+      font-weight: 750;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
     }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--leaf);
+      display: inline-block;
+    }
+    h1 {
+      font-size: clamp(2.6rem, 6.6vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin: 0 0 26px;
+      max-width: 820px;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--leaf);
+    }
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+      margin: 0 0 30px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 34px;
+      margin-top: 44px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      max-width: 720px;
+    }
+    .proof div {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .proof div::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--leaf);
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .proof strong { font-size: 1rem; letter-spacing: -0.02em; }
+    .proof span { color: var(--muted); font-size: 0.95rem; }
+    .card, .panel {
+      background: rgba(253, 251, 244, 0.8);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(22,33,26,0.05);
+    }
+    section { padding: 58px 0; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin: 0;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 680px;
+    }
+    .grid2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card { padding: 24px; }
+    .card h3 { margin: 0 0 12px; font-size: 1.25rem; letter-spacing: -0.035em; }
+    .card p { margin: 0; color: var(--muted); }
+    .card .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+    }
+    .panel { padding: 30px; }
+    .steps {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .steps li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(47,74,53,0.05);
+    }
+    .num {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .steps strong { display: block; margin-bottom: 4px; }
+    .steps span { color: var(--muted); }
+    .tier {
+      margin: 40px 0 16px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      align-items: start;
+    }
+    .tier h3 { margin: 0; font-size: 1.4rem; letter-spacing: -0.04em; }
+    .tier p { margin: 0; color: var(--muted); max-width: 680px; }
+    @media (max-width: 820px) {
+      .tier { grid-template-columns: 1fr; gap: 8px; }
+    }
+    .pains { margin-top: 8px; }
+    .pains .card { border-left: 4px solid var(--leaf); }
+    .pain-note {
+      margin: 22px auto 0;
+      max-width: 720px;
+      text-align: center;
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+    .pain-note strong { color: var(--accent); }
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .about .panel { display: flex; flex-direction: column; justify-content: center; }
+    .about p { color: var(--muted); font-size: 1.08rem; margin: 18px 0 0; }
     .portrait {
       width: 132px;
       height: 132px;
@@ -175,148 +359,7 @@
       letter-spacing: -0.04em;
       color: var(--accent);
     }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      font-weight: 750;
-      font-size: 0.92rem;
-      letter-spacing: 0.01em;
-      margin-bottom: 18px;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 32px;
-      height: 2px;
-      background: var(--accent);
-      display: inline-block;
-    }
-    h1 {
-      font-size: clamp(3rem, 8vw, 6.8rem);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
-      margin: 0 0 26px;
-      max-width: 900px;
-    }
-    .lead {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
-      margin: 0 0 30px;
-    }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .proof {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 46px;
-    }
-    .proof div, .card, .panel {
-      background: rgba(255, 250, 242, 0.78);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 50px rgba(17,17,17,0.05);
-    }
-    .proof div { padding: 18px; }
-    .proof strong { display: block; font-size: 1.35rem; letter-spacing: -0.04em; }
-    .proof span { color: var(--muted); font-size: 0.95rem; }
-    section { padding: 58px 0; }
-    .section-head {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 34px;
-      align-items: start;
-      margin-bottom: 22px;
-    }
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: -0.055em;
-      line-height: 1;
-      margin: 0;
-    }
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 680px;
-    }
-    .grid2x2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .grid3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .card { padding: 24px; }
-    .tier {
-      margin: 40px 0 16px;
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 34px;
-      align-items: start;
-    }
-    .tier h3 {
-      margin: 0;
-      font-size: 1.4rem;
-      letter-spacing: -0.04em;
-    }
-    .tier p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 680px;
-    }
-    @media (max-width: 820px) {
-      .tier { grid-template-columns: 1fr; gap: 8px; }
-    }
-    .card h3 { margin: 0 0 12px; font-size: 1.25rem; letter-spacing: -0.035em; }
-    .card p { margin: 0; color: var(--muted); }
-    .panel { padding: 30px; }
-    .steps {
-      display: grid;
-      gap: 14px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .steps li {
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(17,17,17,0.035);
-    }
-    .num {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-    .steps strong { display: block; margin-bottom: 4px; }
-    .steps span { color: var(--muted); }
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-    .about .panel { display: flex; flex-direction: column; justify-content: center; }
-    .about p { color: var(--muted); font-size: 1.08rem; margin: 18px 0 0; }
-    .stats {
-      display: grid;
-      gap: 12px;
-    }
+    .stats { display: grid; gap: 12px; }
     .stat {
       padding: 22px;
       border-radius: var(--radius);
@@ -329,12 +372,14 @@
       text-align: center;
       padding: 72px 24px;
       border-radius: 32px;
-      background: #111;
+      background: var(--deep);
       color: white;
+      position: relative;
+      overflow: hidden;
     }
     .cta h2 { margin-bottom: 18px; }
-    .cta p { max-width: 620px; margin: 0 auto 28px; color: rgba(255,255,255,0.72); font-size: 1.08rem; }
-    .cta .btn { background: white; color: #111; border-color: white; }
+    .cta p { max-width: 620px; margin: 0 auto 28px; color: rgba(255,255,255,0.75); font-size: 1.08rem; }
+    .cta .btn { background: white; color: var(--deep); border-color: white; }
     footer {
       padding: 34px 0;
       color: var(--muted);
@@ -346,14 +391,60 @@
       gap: 18px;
       flex-wrap: wrap;
     }
+    /* Growing plant animation */
+    .plant-anim .stem {
+      stroke-dasharray: 150;
+      stroke-dashoffset: 150;
+      animation: grow-stem 1.8s ease-out 0.5s forwards;
+    }
+    .plant-anim .seed {
+      animation: seed-fade 0.9s ease-out 0.7s forwards;
+    }
+    .plant-anim .leaf {
+      transform-box: fill-box;
+      scale: 0;
+      animation: leaf-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .plant-anim .leaf.r { transform-origin: 0% 100%; }
+    .plant-anim .leaf.l { transform-origin: 100% 100%; }
+    .plant-anim .leaf.top { transform-origin: 50% 100%; }
+    .plant-anim .d1 { animation-delay: 1.3s; }
+    .plant-anim .d2 { animation-delay: 1.6s; }
+    .plant-anim .d3 { animation-delay: 1.9s; }
+    .plant-anim .d4 { animation-delay: 2.2s; }
+    .plant-anim .plant {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: sway 5s ease-in-out 3s infinite alternate;
+    }
+    @keyframes grow-stem { to { stroke-dashoffset: 0; } }
+    @keyframes seed-fade { to { opacity: 0; } }
+    @keyframes leaf-pop { to { scale: 1; } }
+    @keyframes sway {
+      from { transform: rotate(-1.4deg); }
+      to { transform: rotate(1.6deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .plant-anim .stem { stroke-dashoffset: 0; animation: none; }
+      .plant-anim .seed { opacity: 0; animation: none; }
+      .plant-anim .leaf { scale: 1; animation: none; }
+      .plant-anim .plant { animation: none; }
+    }
     [data-lang="es"] .en, [data-lang="en"] .es { display: none; }
     @media (max-width: 820px) {
       .nav { align-items: flex-start; padding: 16px 0; }
       .navlinks { display: none; }
       .hero { padding-top: 58px; }
-      .proof, .grid2x2, .grid3, .section-head, .about { grid-template-columns: 1fr; }
-      .proof { margin-top: 32px; }
-      .hero-art { display: none; }
+      .plant-art {
+        display: block;
+        width: 104px;
+        right: 6px;
+        top: 8px;
+        opacity: 0.55;
+      }
+      .grid2x2, .grid3, .section-head, .about { grid-template-columns: 1fr; }
+      .proof { margin-top: 32px; flex-direction: column; gap: 10px; }
+      .plant-art { display: none; }
     }
   </style>
 </head>
@@ -364,8 +455,8 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="14" width="20" height="8" rx="2" stroke="#2f4a35" stroke-width="1.8"/><path d="M12 14V8m0 0c0-3 2.4-4.4 4.6-4.4C16.6 6.6 14.6 8 12 8Zm0 0c0-3-2.4-4.4-4.6-4.4C7.4 6.6 9.4 8 12 8Z" stroke="#2f4a35" stroke-width="1.8" stroke-linecap="round"/><path d="M6 18h2m3 0h2m3 0h2" stroke="#2f4a35" stroke-width="1.8" stroke-linecap="round"/></svg>
         Conuco Consulting</a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a class="en" href="#services">Services</a><a class="es" href="#services">Servicios</a>
-        <a class="en" href="#approach">Approach</a><a class="es" href="#approach">Método</a>
+        <a class="en" href="#diagnostic">How it works</a><a class="es" href="#diagnostic">Cómo funciona</a>
+        <a class="en" href="#services">What I fix</a><a class="es" href="#services">Qué arreglo</a>
         <a class="en" href="#about">About</a><a class="es" href="#about">Sobre mí</a>
       </nav>
       <div class="actions">
@@ -380,136 +471,194 @@
   </header>
   <main id="top">
     <section class="hero">
-      <svg class="hero-art" viewBox="0 0 400 420" fill="none" aria-hidden="true">
-        <g stroke="#2f4a35" stroke-width="1.4" opacity="0.32">
-          <rect x="20" y="230" width="110" height="80" rx="10"/>
-          <rect x="145" y="230" width="110" height="80" rx="10"/>
-          <rect x="270" y="230" width="110" height="80" rx="10"/>
-          <rect x="20" y="325" width="110" height="80" rx="10"/>
-          <rect x="145" y="325" width="110" height="80" rx="10"/>
-          <rect x="270" y="325" width="110" height="80" rx="10"/>
-        </g>
-        <g stroke="#2f4a35" stroke-width="2" stroke-linecap="round">
-          <path d="M75 230v-38m0 0c0-16 12-24 24-24 0 16-11 24-24 24Zm0 0c0-16-12-24-24-24 0 16 11 24 24 24Z" opacity="0.85"/>
-          <path d="M200 230v-64m0 0c0-20 15-30 30-30 0 20-14 30-30 30Zm0 0c0-20-15-30-30-30 0 20 14 30 30 30Z"/>
-          <path d="M325 230v-96m0 0c0-24 18-36 36-36 0 24-17 36-36 36Zm0 0c0-24-18-36-36-36 0 24 17 36 36 36Z" opacity="0.7"/>
-          <path d="M75 325v-14m0 0c0-9 7-13 13-13 0 9-6 13-13 13Z" opacity="0.5"/>
-          <path d="M200 325v-22m0 0c0-11 8-16 16-16 0 11-7 16-16 16Zm0 0c0-11-8-16-16-16 0 11 7 16 16 16Z" opacity="0.6"/>
-          <path d="M325 325v-8" opacity="0.4"/>
-        </g>
-        <g stroke="#2f4a35" stroke-width="1.2" stroke-dasharray="2 6" opacity="0.4">
-          <path d="M40 262h70M165 262h70M290 262h70M40 286h70M165 286h70M290 286h70"/>
-          <path d="M40 357h70M165 357h70M290 357h70M40 381h70M165 381h70M290 381h70"/>
+      <svg class="plant-art plant-anim" viewBox="0 0 220 270" fill="none" aria-hidden="true">
+        <!-- ground -->
+        <path d="M40 238 Q110 222 180 238" stroke="#5f8f63" stroke-width="2" opacity="0.5"/>
+        <path d="M28 250h164" stroke="#2f4a35" stroke-width="1.4" opacity="0.25" stroke-dasharray="2 7"/>
+        <!-- seed -->
+        <ellipse class="seed" cx="110" cy="232" rx="8" ry="5.5" fill="#2f4a35" opacity="0.85"/>
+        <g class="plant">
+          <!-- stem -->
+          <path class="stem" d="M110 234 C 110 205, 109 160, 110 106" stroke="#2f4a35" stroke-width="4" stroke-linecap="round"/>
+          <!-- leaves -->
+          <path class="leaf r d1" d="M110 196 Q 146 190 160 158 Q 122 162 110 196 Z" fill="#5f8f63"/>
+          <path class="leaf l d2" d="M110 172 Q 74 166 60 134 Q 98 138 110 172 Z" fill="#4e7d55"/>
+          <path class="leaf r d3" d="M110 146 Q 140 139 151 111 Q 120 116 110 146 Z" fill="#6fa076"/>
+          <path class="leaf l d3" d="M110 130 Q 82 123 72 96 Q 101 101 110 130 Z" fill="#5f8f63"/>
+          <path class="leaf top d4" d="M110 110 Q 96 92 100 70 Q 110 86 110 110 Q 124 92 120 70 Q 110 86 110 110 Z" fill="#2f4a35"/>
         </g>
       </svg>
       <div class="wrap">
-        <div class="eyebrow en">People + Operations for scale</div>
-        <div class="eyebrow es">Personas + Operaciones para escalar</div>
-        <h1 class="en">Structure for growth.</h1>
-        <h1 class="es">Estructura para crecer.</h1>
-        <p class="lead en">Conuco Consulting supports growing companies that need stronger internal structure as they scale. We align people, processes, and performance so the business grows with clarity and stability.</p>
-        <p class="lead es">Conuco Consulting apoya a empresas en crecimiento que necesitan estructura interna más sólida al escalar. Alineamos personas, procesos y desempeño para que crezcan con claridad y estabilidad.</p>
+        <div class="eyebrow en">People + Operations for growing companies</div>
+        <div class="eyebrow es">Personas + Operaciones para empresas en crecimiento</div>
+        <h1 class="en">Your business grew. <em>Your structure didn't.</em></h1>
+        <h1 class="es">Tu empresa creció. <em>Tu estructura no.</em></h1>
+        <p class="lead en">I help owners of growing companies fix how the business runs: who does what, how decisions get made, and which numbers to watch. So the company stops depending on you for everything.</p>
+        <p class="lead es">Ayudo a dueños de empresas en crecimiento a ordenar cómo funciona el negocio: quién hace qué, cómo se toman las decisiones y qué números mirar. Para que la empresa deje de depender de ti para todo.</p>
         <div class="actions">
           <a class="btn en" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Book a call</a>
           <a class="btn es" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Agenda una llamada</a>
-          <a class="btn secondary en" href="#services">What we manage</a>
-          <a class="btn secondary es" href="#services">Qué gestionamos</a>
+          <a class="btn secondary en" href="#diagnostic">How it works</a>
+          <a class="btn secondary es" href="#diagnostic">Cómo funciona</a>
         </div>
         <div class="proof" aria-label="Key proof points">
-          <div><strong>Hands-on</strong><span class="en">Execution, not theory.</span><span class="es">Ejecución, no teoría.</span></div>
-          <div><strong>15+ years</strong><span class="en">Org scale experience.</span><span class="es">Experiencia escalando equipos.</span></div>
-          <div><strong>EU + NA</strong><span class="en">Cross-market operations.</span><span class="es">Operaciones multi-mercado.</span></div>
+          <div><strong>15+ <span class="en">years</span><span class="es">años</span></strong><span class="en">building and running teams</span><span class="es">construyendo y dirigiendo equipos</span></div>
+          <div><strong class="en">Europe + the Americas</strong><strong class="es">Europa + América</strong></div>
+        </div>
+      </div>
+    </section>
+    <section id="familiar">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="en">Sound familiar?</h2><h2 class="es">¿Te suena?</h2>
+          <p class="en">These are the three things I hear most from owners of companies between 10 and 150 people.</p>
+          <p class="es">Estas son las tres cosas que más escucho de dueños de empresas de entre 10 y 150 personas.</p>
+        </div>
+        <div class="grid3 pains">
+          <article class="card">
+            <h3 class="en">"The company runs on my willpower."</h3><h3 class="es">"La empresa funciona a punta de mi empuje."</h3>
+            <p class="en">The weeks you push, things move. The weeks you don't, they don't.</p>
+            <p class="es">Las semanas que empujas, las cosas avanzan. Las que no, no.</p>
+          </article>
+          <article class="card">
+            <h3 class="en">"Growth made everything heavier."</h3><h3 class="es">"Crecer hizo todo más pesado."</h3>
+            <p class="en">More clients, more people, more tools. Somehow, also more friction.</p>
+            <p class="es">Más clientes, más gente, más herramientas. Y de alguna manera, más fricción.</p>
+          </article>
+          <article class="card">
+            <h3 class="en">"I steer by feel."</h3><h3 class="es">"Dirijo por intuición."</h3>
+            <p class="en">The numbers arrive late, incomplete, or not at all. So you decide on instinct and hope.</p>
+            <p class="es">Los números llegan tarde, incompletos o no llegan. Así que decides por instinto y cruzas los dedos.</p>
+          </article>
+        </div>
+        <p class="pain-note en">None of this means your business is broken. It means it grew faster than its structure. <strong>That's fixable.</strong></p>
+        <p class="pain-note es">Nada de esto significa que tu empresa esté mal. Significa que creció más rápido que su estructura. <strong>Y eso tiene arreglo.</strong></p>
+      </div>
+    </section>
+    <section id="diagnostic">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="en">How it works</h2><h2 class="es">Cómo funciona</h2>
+          <p class="en">I work month to month, alongside you and your team. Every collaboration starts the same way: three weeks of diagnosis, so we fix the right things in the right order. If after those three weeks I don't think I can help, I'll tell you, and we stop there.</p>
+          <p class="es">Trabajo mes a mes, junto a ti y a tu equipo. Toda colaboración empieza igual: tres semanas de diagnóstico, para arreglar las cosas correctas en el orden correcto. Si después de esas tres semanas creo que no puedo ayudarte, te lo digo y lo dejamos ahí.</p>
+        </div>
+        <div class="panel">
+          <ol class="steps">
+            <li><span class="num">1</span><div><strong class="en">Look</strong><strong class="es">Mirar</strong><span class="en">I talk to you and your team, and follow how work, money, and decisions actually move through the company.</span><span class="es">Hablo contigo y con tu equipo, y sigo cómo se mueven el trabajo, el dinero y las decisiones dentro de la empresa.</span></div></li>
+            <li><span class="num">2</span><div><strong class="en">Map</strong><strong class="es">Mapear</strong><span class="en">You get an honest picture of what works, what doesn't, and why. No 80-page report. One clear document.</span><span class="es">Recibes una foto honesta de qué funciona, qué no y por qué. Sin informes de 80 páginas. Un documento claro.</span></div></li>
+            <li><span class="num">3</span><div><strong class="en">Plan</strong><strong class="es">Planear</strong><span class="en">A short list of fixes, in order, with what each one takes. You'll know exactly what to do first and what it costs.</span><span class="es">Una lista corta de arreglos, en orden, con lo que requiere cada uno. Sabrás exactamente qué hacer primero y cuánto cuesta.</span></div></li>
+          </ol>
+        </div>
+        <div class="tier">
+          <div>
+            <h3 class="en">Then, three ways to work</h3>
+            <h3 class="es">Después, tres formas de trabajar</h3>
+          </div>
+          <div>
+            <p class="en">From there, most owners keep me at one of three depths. The diagnosis tells us which one makes sense.</p>
+            <p class="es">A partir de ahí, la mayoría de los dueños sigue conmigo en una de tres profundidades. El diagnóstico nos dice cuál tiene sentido.</p>
+          </div>
+        </div>
+        <div class="grid3">
+          <article class="card">
+            <span class="tag en">Deepest</span><span class="tag es">La más profunda</span>
+            <h3 class="en">Inside your team</h3><h3 class="es">Dentro de tu equipo</h3>
+            <p class="en">I join your leadership team one to three days a week and run the fixes from inside. For companies that need an operations lead but aren't ready to hire one full-time.</p>
+            <p class="es">Me sumo a tu equipo directivo de uno a tres días por semana y ejecuto los arreglos desde adentro. Para empresas que necesitan un líder de operaciones pero aún no están listas para contratarlo a tiempo completo.</p>
+          </article>
+          <article class="card">
+            <span class="tag en">Defined</span><span class="tag es">Delimitada</span>
+            <h3 class="en">One project</h3><h3 class="es">Un proyecto</h3>
+            <p class="en">We fix one specific problem, start to finish. Clear scope, clear end date.</p>
+            <p class="es">Arreglamos un problema concreto, de principio a fin. Alcance claro, fecha de cierre clara.</p>
+          </article>
+          <article class="card">
+            <span class="tag en">Lightest</span><span class="tag es">La más ligera</span>
+            <h3 class="en">Advisor</h3><h3 class="es">Acompañamiento</h3>
+            <p class="en">A monthly space to think through the business with you. You run it; I stay close for the hard calls.</p>
+            <p class="es">Un espacio mensual para pensar el negocio contigo. Tú diriges; yo te acompaño en las decisiones difíciles.</p>
+          </article>
         </div>
       </div>
     </section>
     <section id="services">
       <div class="wrap">
         <div class="section-head">
-          <h2 class="en">What we manage</h2><h2 class="es">Qué gestionamos</h2>
-          <p class="en">Structure first. One accountable operator designs the systems and coordinates vetted specialists where execution needs depth.</p>
-          <p class="es">Primero la estructura. Un operador responsable diseña los sistemas y coordina especialistas donde la ejecución necesita profundidad.</p>
+          <h2 class="en">What I fix</h2><h2 class="es">Qué arreglo</h2>
+          <p class="en">In a growing company, the people side, the money side, and the way work gets done break together. I work on all three.</p>
+          <p class="es">En una empresa que crece, el lado humano, el lado del dinero y la forma en que se hace el trabajo se rompen juntos. Trabajo en los tres.</p>
         </div>
         <div class="grid3">
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg></span>
-            <h3 class="en">Operational Structure</h3><h3 class="es">Estructura Operativa</h3>
-            <p class="en">Operating model, decision rights, rituals, documentation, and accountability that scale.</p>
-            <p class="es">Modelo operativo, decisiones, rituales, documentación y accountability que escalan.</p>
+            <h3 class="en">How the business runs</h3><h3 class="es">Cómo funciona el negocio</h3>
+            <p class="en">Who does what, how decisions get made, and meetings that actually move things forward. So things happen without you pushing every one of them.</p>
+            <p class="es">Quién hace qué, cómo se toman las decisiones y reuniones que de verdad hacen avanzar las cosas. Para que todo no dependa de tu empujón.</p>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.6-3.5 2.8-5.5 5.5-5.5S13.9 16.5 14.5 20"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16 14.6c2.5.2 4 1.9 4.5 4.4"/></svg></span>
-            <h3 class="en">People & HR Strategy</h3><h3 class="es">Estrategia de Personas</h3>
-            <p class="en">Org design, performance, compensation logic, hiring, onboarding, and compliance frameworks.</p>
-            <p class="es">Diseño organizacional, desempeño, compensación, selección, onboarding y compliance.</p>
+            <h3 class="en">The people side</h3><h3 class="es">El lado humano</h3>
+            <p class="en">The right people in the right seats. Pay that makes sense, hiring that works, and clear rules that keep you out of legal trouble.</p>
+            <p class="es">Las personas correctas en los puestos correctos. Sueldos con lógica, contrataciones que funcionan y reglas claras que te evitan problemas legales.</p>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h6l3 5 3-5h6"/><path d="M3 17h6l3-5 3 5h6"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-            <h3 class="en">Process Optimization</h3><h3 class="es">Optimización de Procesos</h3>
-            <p class="en">Remove friction, improve execution speed, and build systems teams actually follow.</p>
-            <p class="es">Elimina fricción, acelera ejecución y construye sistemas que el equipo realmente usa.</p>
+            <h3 class="en">The way work flows</h3><h3 class="es">Cómo fluye el trabajo</h3>
+            <p class="en">When the same problems keep coming back, the process is the problem. I simplify it until the team actually follows it.</p>
+            <p class="es">Cuando los mismos problemas vuelven una y otra vez, el problema es el proceso. Lo simplifico hasta que el equipo realmente lo siga.</p>
           </article>
         </div>
         <div class="tier">
-          <h3 class="en">Managed backbones</h3><h3 class="es">Sistemas gestionados</h3>
-          <p class="en">Two systems Conuco can also operate on retainer while your internal capacity catches up. Same accountable lead, same standard.</p>
-          <p class="es">Dos sistemas que Conuco también puede operar en retainer mientras tu capacidad interna madura. Mismo responsable, mismo estándar.</p>
+          <div>
+            <h3 class="en">And two things I can run for you</h3>
+            <h3 class="es">Y dos cosas que puedo operar por ti</h3>
+          </div>
+          <div>
+            <p class="en">Most of what I build, I hand over to your team. These two I can keep running month to month until you're ready to hire for them.</p>
+            <p class="es">La mayoría de lo que construyo se lo entrego a tu equipo. Estas dos las puedo mantener funcionando mes a mes, hasta que estés listo para contratar a alguien.</p>
+          </div>
         </div>
         <div class="grid2x2">
           <article class="card">
-            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10m5.5 10V4m5.5 16v-8m5 8V7"/><path d="M4 6.5c4-.5 7 .5 9.5 3S19 12 20 11.5" opacity="0.6"/></svg></span>
-            <h3 class="en">Growth Systems</h3><h3 class="es">Sistemas de Crecimiento</h3>
-            <p class="en">Landing pages, creative direction, paid acquisition, funnel tracking, and ROI reporting. Measurable path from attention to revenue.</p>
-            <p class="es">Landing pages, dirección creativa, adquisición paga, tracking de funnel y reporting de ROI. Camino medible desde la atención al ingreso.</p>
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h6M7 12h4"/><path d="M14.5 16.5l1.8 1.8 3.2-3.6" /></svg></span>
+            <span class="tag en">Monthly</span><span class="tag es">Mensual</span>
+            <h3 class="en">Your numbers</h3><h3 class="es">Tus números</h3>
+            <p class="en">Clear monthly reports, a cash forecast, and the handful of figures you actually decide with. On time, in plain language, every month.</p>
+            <p class="es">Informes mensuales claros, proyección de caja y el puñado de cifras con las que realmente decides. A tiempo, en lenguaje simple, todos los meses.</p>
           </article>
           <article class="card">
-            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h6M7 12h4"/><path d="M14.5 16.5l1.8 1.8 3.2-3.6" /></svg></span>
-            <h3 class="en">Finance Operations</h3><h3 class="es">Operaciones Financieras</h3>
-            <p class="en">Monthly reporting cadence, cash flow forecasting, KPI dashboards, and close discipline. You see the numbers early enough to act on them.</p>
-            <p class="es">Cadencia de reporting mensual, forecast de cash flow, dashboards de KPIs y disciplina de cierre. Ves los números a tiempo para actuar.</p>
+            <span class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10m5.5 10V4m5.5 16v-8m5 8V7"/><path d="M4 6.5c4-.5 7 .5 9.5 3S19 12 20 11.5" opacity="0.6"/></svg></span>
+            <span class="tag en">Monthly</span><span class="tag es">Mensual</span>
+            <h3 class="en">Your marketing engine</h3><h3 class="es">Tu motor de marketing</h3>
+            <p class="en">Pages that sell, ads that get measured, and a straight answer to "what is this money bringing back?"</p>
+            <p class="es">Páginas que venden, anuncios que se miden y una respuesta directa a "¿qué me está dejando esta inversión?"</p>
           </article>
         </div>
       </div>
     </section>
-    <section id="delivery">
+    <section id="team">
       <div class="wrap">
         <div class="section-head">
-          <h2 class="en">Lean by design</h2><h2 class="es">Lean por diseño</h2>
-          <p class="en">You get one accountable strategic lead, plus the right vetted specialists when execution requires depth. No overhead, no vendor circus. Conuco coordinates.</p>
-          <p class="es">Un líder estratégico responsable, más los especialistas adecuados cuando la ejecución lo requiere. Sin gastos generales, sin circo de proveedores. Conuco coordina.</p>
+          <h2 class="en">You deal with one person</h2><h2 class="es">Tratas con una sola persona</h2>
+          <p class="en">I don't do everything myself, and I won't pretend to. Behind Conuco is a network built over 15 years of working across Europe and the Americas: designers, ads specialists, developers, accountants, lawyers, automation people. When your project needs one of them, I bring them in, I direct their work, and I answer for the result. You manage one person: me.</p>
+          <p class="es">No hago todo yo mismo, ni voy a fingir que sí. Detrás de Conuco hay una red construida durante 15 años de trabajo en Europa y América: diseñadores, especialistas en anuncios, desarrolladores, contadores, abogados, gente de automatización. Cuando tu proyecto necesita a uno de ellos, yo lo traigo, dirijo su trabajo y respondo por el resultado. Tú gestionas a una sola persona: a mí.</p>
         </div>
         <div class="grid3">
           <article class="card">
-            <h3 class="en">Cost-effective structure</h3><h3 class="es">Estructura eficiente</h3>
-            <p class="en">We keep the core lean, reduce unnecessary overhead, and invest budget where it actually moves the outcome.</p>
-            <p class="es">Mantenemos una estructura ligera, eliminamos gastos innecesarios e invertimos presupuesto donde realmente mueve el resultado.</p>
+            <h3 class="en">Small on purpose</h3><h3 class="es">Pequeño a propósito</h3>
+            <p class="en">You pay for work, not for office towers and account managers.</p>
+            <p class="es">Pagas por trabajo, no por torres de oficinas ni gerentes de cuenta.</p>
           </article>
           <article class="card">
-            <h3 class="en">Vetted specialist network</h3><h3 class="es">Red de especialistas</h3>
-            <p class="en">Design, paid media, funnels, content, automation, HR, finance, legal, operations. We bring the right people when needed.</p>
-            <p class="es">Diseño, paid media, funnels, contenido, automatización, HR, finanzas, legal, operaciones. Traemos especialistas cuando hace falta.</p>
+            <h3 class="en">People I've tested</h3><h3 class="es">Gente probada</h3>
+            <p class="en">Nobody pulled from a directory. Everyone has done this with me before.</p>
+            <p class="es">Nadie sacado de un directorio. Todos han trabajado conmigo antes.</p>
           </article>
           <article class="card">
-            <h3 class="en">Turnkey delivery</h3><h3 class="es">Entrega llave en mano</h3>
-            <p class="en">You coordinate nothing. We protect the standard, connect execution to the business goal, and keep the system accountable.</p>
-            <p class="es">No gestionas nada. Cuidamos el estándar, conectamos la ejecución con el objetivo de negocio y mantenemos el sistema accountable.</p>
+            <h3 class="en">No surprises</h3><h3 class="es">Sin sorpresas</h3>
+            <p class="en">You always know who's doing what, and what it costs.</p>
+            <p class="es">Siempre sabes quién hace qué y cuánto cuesta.</p>
           </article>
-        </div>
-      </div>
-    </section>
-    <section id="approach">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 class="en">How we work</h2><h2 class="es">Cómo trabajamos</h2>
-          <p class="en">Practical generalist thinking augmented by AI. Diagnose fast, align leadership, install the minimum structure required to stop chaos from compounding.</p>
-          <p class="es">Pensamiento de generalista práctico aumentado por IA. Diagnosticamos rápido, alineamos liderazgo e instalamos la estructura mínima para frenar el caos.</p>
-        </div>
-        <div class="panel">
-          <ol class="steps">
-            <li><span class="num">1</span><div><strong class="en">Rapid diagnosis</strong><strong class="es">Diagnóstico rápido</strong><span class="en">People, process, performance, and leadership friction. AI helps us see patterns faster.</span><span class="es">Personas, procesos, desempeño y fricción de liderazgo. IA nos ayuda a ver patrones más rápido.</span></div></li>
-            <li><span class="num">2</span><div><strong class="en">Operating backbone</strong><strong class="es">Columna operativa</strong><span class="en">Roles, rituals, decision rights, and accountability.</span><span class="es">Roles, rituales, decisiones y accountability.</span></div></li>
-            <li><span class="num">3</span><div><strong class="en">Systems that stick</strong><strong class="es">Sistemas aplicables</strong><span class="en">Performance, onboarding, compliance, and cadence.</span><span class="es">Desempeño, onboarding, compliance y cadencia.</span></div></li>
-            <li><span class="num">4</span><div><strong class="en">Leader enablement</strong><strong class="es">Acompañamiento a líderes</strong><span class="en">Coaching and change management in the real world.</span><span class="es">Coaching y gestión del cambio aplicada.</span></div></li>
-          </ol>
         </div>
       </div>
     </section>
@@ -521,23 +670,24 @@
             <img src="assets/max.jpg" alt="Max Alejandro Sanchez Luckert" onerror="this.style.display='none'" onload="this.previousElementSibling.style.display='none'" />
           </div>
           <h2 class="en">About</h2><h2 class="es">Sobre mí</h2>
-          <p class="en">I'm Max Alejandro Sanchez Luckert. People & Operations leader with 15+ years across digital media, advertising, and ag-tech. I've built and restructured teams, led compliance across regions, and supported executives through high-change environments. I'm a proud generalist—systems thinking is my default. Now I work with companies ready to build operating systems that actually work, and I use AI as part of my operating layer to move faster on diagnosis, design, and coordination.</p>
-          <p class="es">Soy Max Alejandro Sanchez Luckert. Líder en Personas y Operaciones con 15+ años en medios digitales, publicidad y ag-tech. He construido y reestructurado equipos, liderado compliance multi-región y apoyado a ejecutivos en entornos de alto cambio. Soy un generalista orgulloso—el pensamiento sistémico es mi defecto. Ahora trabajo con empresas listas para construir sistemas operativos que realmente funcionan, y uso IA como parte de mi capa operativa para avanzar más rápido en diagnóstico, diseño y coordinación.</p>
+          <p class="en">I'm Max Sanchez Luckert. I've spent 15+ years inside growing companies, from digital media and advertising to agriculture tech, building teams, fixing operations, and helping owners through messy growth. I started at Deloitte in 2010 and have run my own consulting practice since 2016. I'm a generalist on purpose: I connect the people side, the money side, and the way work gets done, because in a growing company they break together. I also lean hard on AI. It makes a one-person practice move faster than it has any right to. I work in English, French, and Spanish, and hold my own in Italian and Portuguese. Forty-plus countries and one open water diving license later, I'm at home in most rooms.</p>
+          <p class="es">Soy Max Sanchez Luckert. Llevo más de 15 años dentro de empresas en crecimiento, desde medios digitales y publicidad hasta tecnología agrícola, armando equipos, arreglando operaciones y acompañando a dueños en etapas de crecimiento desordenado. Empecé en Deloitte en 2010 y dirijo mi propia consultora desde 2016. Soy generalista a propósito: conecto el lado humano, el lado del dinero y la forma en que se hace el trabajo, porque en una empresa que crece, esas tres cosas se rompen juntas. También uso inteligencia artificial a fondo: hace que una consultora de una sola persona avance más rápido de lo que parecería posible. Trabajo en inglés, francés y español, y me defiendo bien en italiano y portugués. Después de más de 40 países y una licencia de buceo, me siento en casa en casi cualquier lugar.</p>
         </div>
         <div class="stats">
-          <div class="stat"><strong>EU + NA</strong><span class="en">International operations and compliance.</span><span class="es">Operaciones y compliance internacional.</span></div>
-          <div class="stat"><strong>C-suite</strong><span class="en">Trusted strategic operator for senior leaders.</span><span class="es">Operador estratégico de confianza.</span></div>
-          <div class="stat"><strong>Hands-on</strong><span class="en">Systems built to be used, not admired.</span><span class="es">Sistemas para usarse, no para decorar.</span></div>
+          <div class="stat"><strong><span class="en">Since 2010</span><span class="es">Desde 2010</span></strong><span class="en">Started at Deloitte. Operator ever since.</span><span class="es">Empecé en Deloitte. Operador desde entonces.</span></div>
+          <div class="stat"><strong>EN · FR · ES</strong><span class="en">Plus conversational Italian and Portuguese.</span><span class="es">Más italiano y portugués conversacional.</span></div>
+          <div class="stat"><strong><span class="en">40+ countries</span><span class="es">40+ países</span></strong><span class="en">Traveled, worked, and dived in a few of them.</span><span class="es">Recorridos, trabajados y algunos buceados.</span></div>
+          <div class="stat"><strong>Hands-on</strong><span class="en">Systems built to be used, not admired.</span><span class="es">Sistemas para usarse, no para admirarse.</span></div>
         </div>
       </div>
     </section>
     <section>
       <div class="wrap">
         <div class="cta">
-          <h2 class="en">Ready to bring order to growth?</h2>
-          <h2 class="es">¿Listo para poner orden al crecimiento?</h2>
-          <p class="en">Book a call. We'll map what's broken, what's missing, and what systems to install first.</p>
-          <p class="es">Agenda una llamada. Mapeamos qué está roto, qué falta y qué sistemas instalar primero.</p>
+          <h2 class="en">Let's find out what to fix first.</h2>
+          <h2 class="es">Veamos qué arreglar primero.</h2>
+          <p class="en">Book a call. Thirty minutes, no sales pitch. If I can't help you, I'll tell you.</p>
+          <p class="es">Agenda una llamada. Treinta minutos, sin discurso de venta. Si no puedo ayudarte, te lo digo.</p>
           <a class="btn en" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Let's talk</a>
           <a class="btn es" href="https://calendar.app.google/1FhcAsmToNHmuXbZ8" target="_blank" rel="noreferrer">Hablemos</a>
         </div>
