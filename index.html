@@ -272,6 +272,20 @@
     .panel { padding: 30px; }
     .price-note { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); }
     .price-note strong { color: var(--ink); }
+    .step-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 750;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 6px 13px;
+      margin-bottom: 14px;
+    }
     .steps {
       display: grid;
       gap: 14px;
@@ -559,21 +573,23 @@
           <p class="es">Trabajo mes a mes, junto a ti y a tu equipo. Toda colaboración empieza igual: tres semanas de diagnóstico, para arreglar las cosas correctas en el orden correcto. Si después de esas tres semanas creo que no puedo ayudarte, te lo digo y lo dejamos ahí.</p>
           <p class="fr">Je travaille au mois, à vos côtés et avec votre équipe. Toute collaboration commence de la même façon : trois semaines de diagnostic, pour réparer les bonnes choses dans le bon ordre. Si après ces trois semaines je pense ne pas pouvoir vous aider, je vous le dis et on s'arrête là.</p>
         </div>
+        <div class="step-label"><span class="en">Step 1 · Diagnosis</span><span class="es">Paso 1 · Diagnóstico</span><span class="fr">Étape 1 · Diagnostic</span></div>
         <div class="panel">
           <ol class="steps">
-            <li><span class="num">1</span><div><strong class="en">Look</strong><strong class="es">Mirar</strong><strong class="fr">Regarder</strong><span class="en">I talk to you and your team, and follow how work, money, and decisions actually move through the company.</span><span class="es">Hablo contigo y con tu equipo, y sigo cómo se mueven el trabajo, el dinero y las decisiones dentro de la empresa.</span><span class="fr">Je parle avec vous et votre équipe, et je suis comment le travail, l'argent et les décisions circulent vraiment dans l'entreprise.</span></div></li>
-            <li><span class="num">2</span><div><strong class="en">Map</strong><strong class="es">Mapear</strong><strong class="fr">Cartographier</strong><span class="en">You get an honest picture of what works, what doesn't, and why. No 80-page report. One clear document.</span><span class="es">Recibes una foto honesta de qué funciona, qué no y por qué. Sin informes de 80 páginas. Un documento claro.</span><span class="fr">Vous recevez un portrait honnête de ce qui fonctionne, de ce qui ne fonctionne pas et pourquoi. Pas de rapport de 80 pages. Un document clair.</span></div></li>
-            <li><span class="num">3</span><div><strong class="en">Plan</strong><strong class="es">Planear</strong><strong class="fr">Planifier</strong><span class="en">A short list of fixes, in order, with what each one takes. You'll know exactly what to do first and what it costs.</span><span class="es">Una lista corta de arreglos, en orden, con lo que requiere cada uno. Sabrás exactamente qué hacer primero y cuánto cuesta.</span><span class="fr">Une courte liste de correctifs, dans l'ordre, avec ce que chacun demande. Vous saurez exactement quoi faire en premier et combien ça coûte.</span></div></li>
+            <li><span class="num">1</span><div><strong class="en">Observe</strong><strong class="es">Observar</strong><strong class="fr">Observer</strong><span class="en">I talk to you and your team, and follow how work, money, and decisions move through the company.</span><span class="es">Hablo contigo y con tu equipo, y sigo cómo se mueven el trabajo, el dinero y las decisiones dentro de la empresa.</span><span class="fr">Je parle avec vous et votre équipe, et je suis comment le travail, l'argent et les décisions circulent dans l'entreprise.</span></div></li>
+            <li><span class="num">2</span><div><strong class="en">Map</strong><strong class="es">Mapear</strong><strong class="fr">Cartographier</strong><span class="en">You get an honest picture of what works, what does not, and why. No 80-page report. One clear document.</span><span class="es">Recibes una foto honesta de qué funciona, qué no y por qué. Sin informes de 80 páginas. Un documento claro.</span><span class="fr">Vous recevez un portrait honnête de ce qui fonctionne, de ce qui ne fonctionne pas et pourquoi. Pas de rapport de 80 pages. Un document clair.</span></div></li>
+            <li><span class="num">3</span><div><strong class="en">Plan</strong><strong class="es">Planear</strong><strong class="fr">Planifier</strong><span class="en">A short list of fixes, in order, with what each one takes. You will know exactly what to do first and what it costs.</span><span class="es">Una lista corta de arreglos, en orden, con lo que requiere cada uno. Sabrás exactamente qué hacer primero y cuánto cuesta.</span><span class="fr">Une courte liste de correctifs, dans l'ordre, avec ce que chacun demande. Vous saurez exactement quoi faire en premier et combien ça coûte.</span></div></li>
           </ol>
-          <p class="price-note en">The diagnosis is a fixed engagement: <strong>2,500 &euro;</strong> for three weeks. At the end you get the findings, the plan, and a proposal with the exact monthly figure for whichever depth fits.</p>
-          <p class="price-note es">El diagnóstico es un trabajo cerrado: <strong>2.500 &euro;</strong> por tres semanas. Al final recibes los hallazgos, el plan y una propuesta con la cifra mensual exacta de la profundidad que encaje.</p>
-          <p class="price-note fr">Le diagnostic est une mission à prix fixe : <strong>2&nbsp;500 &euro;</strong> pour trois semaines. À la fin, vous recevez les constats, le plan et une proposition avec le montant mensuel exact de la profondeur qui convient.</p>
+          <p class="price-note en">The diagnosis is a fixed engagement: <strong>2,500 &euro;</strong> for three weeks. At the end you get the assessment, the plan, and a proposal with the exact monthly figure for whichever depth fits.</p>
+          <p class="price-note es">El diagnóstico es un trabajo cerrado: <strong>2.500 &euro;</strong> por tres semanas. Al final recibes la evaluación, el plan y una propuesta con la cifra mensual exacta de la profundidad que encaje.</p>
+          <p class="price-note fr">Le diagnostic est une mission à prix fixe : <strong>2&nbsp;500 &euro;</strong> pour trois semaines. À la fin, vous recevez l'évaluation, le plan et une proposition avec le montant mensuel exact de la profondeur qui convient.</p>
         </div>
+        <div class="step-label"><span class="en">Step 2 · How we work together</span><span class="es">Paso 2 · Cómo trabajamos juntos</span><span class="fr">Étape 2 · Comment on travaille ensemble</span></div>
         <div class="tier">
           <div>
-            <h3 class="en">Then, three ways to work</h3>
-            <h3 class="es">Después, tres formas de trabajar</h3>
-            <h3 class="fr">Ensuite, trois façons de travailler</h3>
+            <h3 class="en">Three ways to work</h3>
+            <h3 class="es">Tres formas de trabajar</h3>
+            <h3 class="fr">Trois façons de travailler</h3>
           </div>
           <div>
             <p class="en">From there, most owners keep me at one of three depths. The diagnosis tells us which one makes sense.</p>
@@ -608,6 +624,7 @@
     </section>
     <section id="services">
       <div class="wrap">
+        <div class="step-label"><span class="en">Step 3 · Implementation</span><span class="es">Paso 3 · Implementación</span><span class="fr">Étape 3 · Mise en œuvre</span></div>
         <div class="section-head">
           <h2 class="en">What I fix</h2><h2 class="es">Qué arreglo</h2><h2 class="fr">Ce que je répare</h2>
           <p class="en">In a growing company, the people side, the money side, and the way work gets done break together. I work on all three.</p>
@@ -692,7 +709,7 @@
           </article>
           <article class="card">
             <h3 class="en">No surprises</h3><h3 class="es">Sin sorpresas</h3><h3 class="fr">Pas de surprises</h3>
-            <p class="en">You always know who's doing what, and what it costs.</p>
+            <p class="en">You always know who is doing what, and what it costs.</p>
             <p class="es">Siempre sabes quién hace qué y cuánto cuesta.</p>
             <p class="fr">Vous savez toujours qui fait quoi et combien ça coûte.</p>
           </article>
